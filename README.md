@@ -2,7 +2,7 @@
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/WuglyakBolgoink/cordova-plugin-iroot/master/LICENSE)
 [![Android](https://img.shields.io/badge/android-failed-red.svg)](https://shields.io)
-[![iOS](https://img.shields.io/badge/android-success-green.svg)](https://shields.io)
+[![iOS](https://img.shields.io/badge/iOS-success-green.svg)](https://shields.io)
 
 
 Use this plugin to add an extra layer of security for your app, by detecting if the device running the app is jailbroken.
