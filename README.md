@@ -1,4 +1,4 @@
-## Cordova Jailbreak/Root Detection Plugin for Apache Cordova
+## Cordova Jailbreak/Root Detection Plugin
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/WuglyakBolgoink/cordova-plugin-iroot/master/LICENSE)
 [![Android](https://img.shields.io/badge/android-failed-red.svg)](https://shields.io)
@@ -20,8 +20,8 @@ Based on:
 ```
 cordova plugin add cordova-plugin-iroot --save
 ```
-   
-   
+
+
 ## Usage
 
 
@@ -32,6 +32,11 @@ IRoot.isRooted(successCallback, failureCallback);
 - `successCallback(result:boolean)` is called with true if the device is Jailbroken/rooted, otherwise false.
 - `failureCallback(error:string)` is called if there was an error determining if the device is Jailbroken/rooted.
 
+
+## TODO
+
+- :sos: Add android classes
+- :sos: Add android rootbeer as dependency
 
 ## License
 
