@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-iroot" version="0.1.0">
+    <name>iRoot</name>
+    <author>Wuglyak Bolgoink (info@cyberkatze.de)</author>
+    <description>Cordova Jailbreak/Root Detection Plugin for Apache Cordova</description>
+    <keywords>cordova, jailbreak, jailbroken, cydia, detection, detector, root, rooted</keywords>
+    <license>MIT</license>
+    <repo>https://github.com/WuglyakBolgoink/cordova-plugin-iroot</repo>
+    <issue>https://github.com/WuglyakBolgoink/cordova-plugin-iroot/issues</issue>
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+    <js-module src="www/iroot.js" name="iRoot">
+        <clobbers target="iroot" />
+    </js-module>
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="iRoot">
+                <param name="ios-package" value="iRoot" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <header-file src="src/ios/IRoot.h" />
+        <source-file src="src/ios/IRoot.m" />
+    </platform>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="iRoot">
+                <param name="android-package" value="de.cyberkatze.iroot.IRoot"/>
+                <param name="onload" value="true"/>
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+        <source-file src="src/android/IRoot.java" target-dir="src/de/cyberkatze/iroot"/>
+    </platform>
+</plugin>
