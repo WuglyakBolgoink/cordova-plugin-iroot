@@ -29,7 +29,7 @@ cordova plugin add cordova-plugin-iroot --save
 IRoot.isRooted(successCallback, failureCallback);
 ```
 
-- `successCallback(result:boolean)` is called with true if the device is Jailbroken/rooted, otherwise false.
+- `successCallback(result:boolean:ios|number:android)` is called with `true/1` if the device is Jailbroken/rooted, otherwise `false/0`.
 - `failureCallback(error:string)` is called if there was an error determining if the device is Jailbroken/rooted.
 
 
@@ -37,6 +37,7 @@ IRoot.isRooted(successCallback, failureCallback);
 
 - :sos: Add android classes
 - :sos: Add android rootbeer as dependency
+- :sos: Add cordova Demo project
 
 ## License
 
