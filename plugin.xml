@@ -10,13 +10,13 @@
     <engines>
         <engine name="cordova" version=">=3.0.0" />
     </engines>
-    <js-module src="www/iroot.js" name="iRoot">
-        <clobbers target="iroot" />
+    <js-module src="www/iroot.js" name="IRoot">
+        <clobbers target="IRoot" />
     </js-module>
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
-            <feature name="iRoot">
-                <param name="ios-package" value="iRoot" />
+            <feature name="IRoot">
+                <param name="ios-package" value="IRoot" />
                 <param name="onload" value="true" />
             </feature>
         </config-file>
@@ -25,7 +25,7 @@
     </platform>
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
-            <feature name="iRoot">
+            <feature name="IRoot">
                 <param name="android-package" value="de.cyberkatze.iroot.IRoot"/>
                 <param name="onload" value="true"/>
             </feature>

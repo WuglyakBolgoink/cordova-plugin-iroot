@@ -5,7 +5,7 @@ var IRoot = function () {
 };
 
 IRoot.prototype.isRooted = function (successCallback, failureCallback) {
-    exec(successCallback, failureCallback, "iRoot", "isRooted", []);
+    exec(successCallback, failureCallback, "IRoot", "isRooted", []);
 };
 
 module.exports = new IRoot();
