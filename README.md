@@ -29,8 +29,8 @@ cordova plugin add cordova-plugin-iroot --save
 IRoot.isRooted(successCallback, failureCallback);
 ```
 
-> => `successCallback(result:boolean)` is called with true if the device is Jailbroken/rooted, otherwise false.
-> => `failureCallback(error:string)` is called if there was an error determining if the device is Jailbroken/rooted.
+- `successCallback(result:boolean)` is called with true if the device is Jailbroken/rooted, otherwise false.
+- `failureCallback(error:string)` is called if there was an error determining if the device is Jailbroken/rooted.
 
 
 ## License
