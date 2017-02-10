@@ -9,11 +9,3 @@ IRoot.prototype.isRooted = function (successCallback, failureCallback) {
 };
 
 module.exports = new IRoot();
-
-// cordova.exec(
-//     function(winParam) {},
-//     function(error) {},
-//     "service",
-//     "action",
-//     ["arguments..."]
-// );
