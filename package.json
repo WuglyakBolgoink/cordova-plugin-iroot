@@ -1,41 +1,41 @@
 {
-    "name": "cordova-plugin-iroot",
-    "version": "0.1.0",
-    "description": "Cordova Jailbreak/Root Detection Plugin for Apache Cordova",
-    "cordova": {
-        "id": "cordova-plugin-iroot",
-        "platforms": [
-            "ios",
-            "android"
-        ]
-    },
-    "keywords": [
-        "cordova",
-        "jailbreak",
-        "jailbroken",
-        "cydia",
-        "detection",
-        "detector",
-        "root",
-        "rooted",
-        "ecosystem:cordova",
-        "cordova-ios",
-        "cordova-android"
-    ],
-    "engines": [
-        {
-            "name": "cordova",
-            "version": ">=3.0.0"
-        }
-    ],
-    "author": "Wuglyak Bolgoink (info@cyberkatze.de)",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/WuglyakBolgoink/cordova-plugin-iroot/issues"
-    },
-    "homepage": "https://github.com/WuglyakBolgoink/cordova-plugin-iroot#readme",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/WuglyakBolgoink/cordova-plugin-iroot.git"
+  "name": "cordova-plugin-iroot",
+  "version": "0.2.0",
+  "description": "Cordova Jailbreak/Root Detection Plugin for Apache Cordova",
+  "cordova": {
+    "id": "cordova-plugin-iroot",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "keywords": [
+    "cordova",
+    "jailbreak",
+    "jailbroken",
+    "cydia",
+    "detection",
+    "detector",
+    "root",
+    "rooted",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
     }
+  ],
+  "author": "Wuglyak Bolgoink (info@cyberkatze.de)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WuglyakBolgoink/cordova-plugin-iroot/issues"
+  },
+  "homepage": "https://github.com/WuglyakBolgoink/cordova-plugin-iroot#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WuglyakBolgoink/cordova-plugin-iroot.git"
+  }
 }
