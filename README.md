@@ -1,7 +1,7 @@
 ## Cordova Jailbreak/Root Detection Plugin
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/WuglyakBolgoink/cordova-plugin-iroot/master/LICENSE)
-[![Android](https://img.shields.io/badge/android-failed-red.svg)](https://shields.io)
+[![Android](https://img.shields.io/badge/android-success-green.svg)](https://shields.io)
 [![iOS](https://img.shields.io/badge/iOS-success-green.svg)](https://shields.io)
 
 
@@ -35,7 +35,6 @@ IRoot.isRooted(successCallback, failureCallback);
 
 ## TODO
 
-- :sos: Add android classes
 - :sos: Add android rootbeer as dependency
 - :sos: Add cordova Demo project
 
