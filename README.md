@@ -1,8 +1,17 @@
 ## Cordova Jailbreak/Root Detection Plugin for Apache Cordova
 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/WuglyakBolgoink/cordova-plugin-iroot/master/LICENSE)
+
+
 Use this plugin to add an extra layer of security for your app, by detecting if the device running the app is jailbroken.
 
 ## Platform Support
+
+## Installation
+
+```
+cordova plugin add cordova-plugin-iroot --save
+```
    
    
 ## Usage
@@ -15,3 +24,5 @@ IRoot.isRooted(successCallback, failureCallback);
 
 
 ## License
+
+MIT License
