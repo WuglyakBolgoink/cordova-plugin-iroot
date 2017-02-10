@@ -1,13 +1,13 @@
 //
-//  JailbreakDetection.h
+//  IRoot.h
 //  Copyright (c) 2014 Lee Crossley - http://ilee.co.uk
 //
 
 #import "Foundation/Foundation.h"
 #import "Cordova/CDV.h"
 
-@interface JailbreakDetection : CDVPlugin
+@interface IRoot : CDVPlugin
 
-- (void) isJailbroken:(CDVInvokedUrlCommand*)command;
+- (void) isRooted:(CDVInvokedUrlCommand*)command;
 
 @end
