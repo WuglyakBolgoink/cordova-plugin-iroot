@@ -15,6 +15,11 @@ Based on:
 
 ## Platform Support
 
+- iOS
+- Android
+
+> todo: check versions...
+
 ## Installation
 
 ```
