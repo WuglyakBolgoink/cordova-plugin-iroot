@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-iroot" version="0.3.0">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-iroot" version="0.3.2">
     <name>iRoot</name>
     <author>Wuglyak Bolgoink (info@cyberkatze.de)</author>
     <description>Cordova Jailbreak/Root Detection Plugin for Apache Cordova</description>
