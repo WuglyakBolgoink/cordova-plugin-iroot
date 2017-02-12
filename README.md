@@ -38,10 +38,19 @@ IRoot.isRooted(successCallback, failureCallback);
 - `failureCallback(error:string)` is called if there was an error determining if the device is Jailbroken/rooted.
 
 
-## TODO
+## Demo
 
-- :sos: Add android rootbeer as dependency
-- :sos: Add cordova Demo project
+### Android
+
+[APK - iRoot v1.1.0](https://github.com/WuglyakBolgoink/cordova-plugin-iroot/raw/master/demo/android/iRoot_v1_1_0.apk)
+
+
+### Screens
+
+![Rooted device](https://github.com/WuglyakBolgoink/cordova-plugin-iroot/raw/master/demo/images/rooted.png "Rooted device")
+![Not rooted device](https://github.com/WuglyakBolgoink/cordova-plugin-iroot/raw/master/demo/images/notrooted.png "Not rooted device")
+
+
 
 ## License
 
