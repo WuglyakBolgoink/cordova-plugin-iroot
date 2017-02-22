@@ -4,6 +4,11 @@
 [![Android](https://img.shields.io/badge/android-success-green.svg)](https://shields.io)
 [![iOS](https://img.shields.io/badge/iOS-success-green.svg)](https://shields.io)
 
+[![NPM](https://nodei.co/npm/cordova-plugin-iroot.png?stars=true)](https://nodei.co/npm/cordova-plugin-iroot/)
+[![NPM](https://nodei.co/npm-dl/cordova-plugin-iroot.png?months=1)](https://nodei.co/npm-dl/cordova-plugin-iroot.png?months=1)
+
+
+
 
 Use this plugin to add an extra layer of security for your app, by detecting if the device running the app is jailbroken.
 
@@ -13,22 +18,13 @@ Based on:
 - https://github.com/trykovyura/cordova-plugin-root-detection (Android)
 - https://github.com/scottyab/rootbeer/blob/master/README.md (Android)
 
-## Platform Support
-
-- iOS
-- Android
-
-> todo: check versions...
-
 ## Installation
 
 ```
 cordova plugin add cordova-plugin-iroot --save
 ```
 
-
 ## Usage
-
 
 ```
 IRoot.isRooted(successCallback, failureCallback);
@@ -50,6 +46,9 @@ IRoot.isRooted(successCallback, failureCallback);
 ![Rooted device](https://github.com/WuglyakBolgoink/cordova-plugin-iroot/raw/master/demo/images/rooted.png "Rooted device")
 ![Not rooted device](https://github.com/WuglyakBolgoink/cordova-plugin-iroot/raw/master/demo/images/notrooted.png "Not rooted device")
 
+## TODO
+
+- check versions
 
 
 ## License
