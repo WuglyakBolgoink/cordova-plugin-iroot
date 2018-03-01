@@ -1,16 +1,10 @@
 var exec = require('cordova/exec');
 
-var IRoot = function () {
-    this.name = "IRoot";
+module.exports = {
+    isRooted: function(successCallback, failureCallback) {
+        exec(successCallback, failureCallback, 'IRoot', 'isRooted', []);
+    },
+    isRootedRedBeer: function(successCallback, failureCallback) {
+        exec(successCallback, failureCallback, 'IRoot', 'isRootedRedBeer', []);
+    }
 };
-
-IRoot.prototype.isRooted = function (successCallback, failureCallback) {
-    exec(successCallback, failureCallback, "IRoot", "isRooted", []);
-};
-
-
-IRoot.prototype.isRootedRedBeer = function (successCallback, failureCallback) {
-    exec(successCallback, failureCallback, "IRoot", "isRootedRedBeer", []);
-};
-
-module.exports = new IRoot();
