@@ -40,6 +40,9 @@ IRoot.isRooted(successCallback, failureCallback);
 
 [APK - iRoot v1.1.0](https://github.com/WuglyakBolgoink/cordova-plugin-iroot/raw/master/demo/android/iRoot_v1_1_0.apk)
 
+### ionic 
+
+See comments in https://github.com/WuglyakBolgoink/cordova-plugin-iroot/issues/1
 
 ### Screens
 
