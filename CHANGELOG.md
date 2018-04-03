@@ -2,6 +2,11 @@
 
 ## Version History
 
+### v0.7.0
+
++ Add new Android Check: `IRoot.isRootedRedBeerWithoutBusyBoxCheck()`
++ Update README => Added Android Check: `IRoot.isRootedRedBeer()`
+
 ### v0.6.0
 
 #### Bug Fixes
