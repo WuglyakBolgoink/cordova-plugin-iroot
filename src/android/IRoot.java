@@ -38,7 +38,16 @@ public class IRoot extends CordovaPlugin {
                                callbackContext.error("Error: N/A");
                                return false;
                            }
-                       }
+                       } else if (action.equals("isRootedRedBeerWithoutBusyBoxCheck")) {
+                                                    try {
+                                                        RootBeer rootBeer = new RootBeer(this.cordova.getActivity().getApplicationContext());
+                                                        callbackContext.success(rootBeer.isRootedWithoutBusyBoxCheck() ? 1 : 0);
+                                                        return true;
+                                                    } catch (Exception e) {
+                                                        callbackContext.error("Error: N/A");
+                                                        return false;
+                                                    }
+                                                }
         return false;
     }
 

@@ -6,5 +6,8 @@ module.exports = {
     },
     isRootedRedBeer: function(successCallback, failureCallback) {
         exec(successCallback, failureCallback, 'IRoot', 'isRootedRedBeer', []);
+    },
+    isRootedRedBeerWithoutBusyBoxCheck: function(successCallback, failureCallback) {
+        exec(successCallback, failureCallback, 'IRoot', 'isRootedRedBeerWithoutBusyBoxCheck', []);
     }
 };
