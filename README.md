@@ -1,4 +1,5 @@
 # cordova-plugin-iroot
+=========
 
 Cordova Jailbreak/Root Detection Plugin
 
