@@ -3,5 +3,5 @@ repositories{
 }
 
 dependencies {
-    compile 'com.github.scottyab:rootbeer:0.0.6'
+    compile 'com.github.scottyab:rootbeer:0.0.7'
 }
