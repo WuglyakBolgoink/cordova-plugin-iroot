@@ -16,6 +16,7 @@ Based on:
 - [cordova-plugin-jailbreak-detection](https://github.com/leecrossley/cordova-plugin-jailbreak-detection) (iOS)
 - [cordova-plugin-root-detection](https://github.com/trykovyura/cordova-plugin-root-detection) (Android)
 - [RootBeer](https://github.com/scottyab/rootbeer/blob/master/README.md) (Android)
+- [Shmoopi Anti-Piracy](https://github.com/Shmoopi/AntiPiracy) (iOS)
 
 ## Installation
 
