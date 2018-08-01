@@ -1,13 +1,10 @@
-# cordova-plugin-iroot
-
-Cordova Jailbreak/Root Detection Plugin
-
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/WuglyakBolgoink/cordova-plugin-iroot/master/LICENSE)
 [![Android](https://img.shields.io/badge/android-success-green.svg)](https://shields.io)
 [![iOS](https://img.shields.io/badge/iOS-success-green.svg)](https://shields.io)
-
 [![NPM](https://nodei.co/npm/cordova-plugin-iroot.png?mini=true)](https://nodei.co/npm/cordova-plugin-iroot/)
 
+Cordova Jailbreak/Root Detection Plugin
+=======================================
 
 Use this plugin to add an extra layer of security for your app, by detecting if the device running the app is jailbroken.
 
@@ -44,6 +41,14 @@ IRoot.isRootedRedBeerWithoutBusyBoxCheck(successCallback, failureCallback);
 ## Demo ionic
 
 See [comments](https://github.com/WuglyakBolgoink/cordova-plugin-iroot/issues/1).
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
 
 ## License
 
