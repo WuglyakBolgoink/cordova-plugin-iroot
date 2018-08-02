@@ -2,7 +2,7 @@
 
 ## Version History
 
-### v0.7.0
+### v0.7.0-0.8.0
 
 + Add new optional install variable `ENABLE_BUSYBOX_CHECK`
 + Fixed Android Check: `IRoot.isRooted()`
