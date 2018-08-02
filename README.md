@@ -38,7 +38,7 @@ IRoot.isRootedRedBeer(successCallback, failureCallback);
 IRoot.isRootedRedBeerWithoutBusyBoxCheck(successCallback, failureCallback);
 ```
 
-- `successCallback(result:boolean:ios|number:android)` is called with `true` if the device is Jailbroken/rooted, otherwise `false`.
+- `successCallback(result:boolean)` is called with `true` if the device is Jailbroken/rooted, otherwise `false`.
 - `failureCallback(error:string)` is called if there was an error determining if the device is Jailbroken/rooted.
 
 ## Info
