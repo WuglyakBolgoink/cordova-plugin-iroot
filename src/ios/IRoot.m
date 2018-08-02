@@ -1,6 +1,6 @@
 //
 //  IRoot.m
-//  Copyright (c) 2014 Lee Crossley - http://ilee.co.uk
+//  Original Copyright (c) 2014 Lee Crossley - http://ilee.co.uk
 //  Techniques from http://highaltitudehacks.com/2013/12/17/ios-application-security-part-24-jailbreak-detection-and-evasion/
 //
 

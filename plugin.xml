@@ -1,18 +1,29 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<plugin id="cordova-plugin-iroot" version="0.7.0" xmlns="http://apache.org/cordova/ns/plugins/1.0">
+<plugin id="cordova-plugin-iroot" version="0.7.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>iRoot</name>
     <author>Wuglyak Bolgoink (info@cyberkatze.de)</author>
+
     <description>Cordova Jailbreak/Root Detection Plugin</description>
     <keywords>cordova,jailbreak,jailbroken,cydia,detection,detector,root,rooted,rootBeer,android,ios,iroot,plugin</keywords>
+
     <license>MIT</license>
+
     <repo>https://github.com/WuglyakBolgoink/cordova-plugin-iroot</repo>
     <issue>https://github.com/WuglyakBolgoink/cordova-plugin-iroot/issues</issue>
+
     <engines>
         <engine name="cordova" version=">=6.0.0"/>
     </engines>
+
     <js-module name="IRoot" src="www/iroot.js">
         <clobbers target="IRoot"/>
     </js-module>
+
+    <preference name="ENABLE_BUSYBOX_CHECK" default="true" />
+
+    <hook type="after_plugin_install" src="scripts/handle_plugin_preferences.js" />
+    <hook type="before_prepare" src="scripts/handle_plugin_preferences.js" />
+
     <platform name="ios">
         <config-file parent="/*" target="config.xml">
             <feature name="IRoot">
@@ -23,6 +34,7 @@
         <header-file src="src/ios/IRoot.h"/>
         <source-file src="src/ios/IRoot.m"/>
     </platform>
+
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="IRoot">
@@ -31,7 +43,8 @@
             </feature>
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml"/>
-        <source-file src="src/android/IRoot.java" target-dir="src/de/cyberkatze/iroot"/>
+        <source-file src="src/android/de/cyberkatze/iroot/IRoot.java" target-dir="src/de/cyberkatze/iroot"/>
         <framework custom="true" src="src/android/build-extras.gradle" type="gradleReference"/>
     </platform>
+
 </plugin>

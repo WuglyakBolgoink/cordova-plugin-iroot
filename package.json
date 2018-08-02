@@ -2,6 +2,7 @@
   "name": "cordova-plugin-iroot",
   "version": "0.7.0",
   "description": "Cordova Jailbreak/Root Detection Plugin for Apache Cordova",
+  "types": "./types/index.d.ts",
   "cordova": {
     "id": "cordova-plugin-iroot",
     "platforms": [
@@ -10,6 +11,9 @@
     ]
   },
   "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
     "cordova",
     "jailbreak",
     "jailbroken",
@@ -18,14 +22,16 @@
     "detector",
     "root",
     "rooted",
-    "ecosystem:cordova",
-    "cordova-ios",
-    "cordova-android"
+    "rootBeer",
+    "android",
+    "ios",
+    "iroot",
+    "plugin"
   ],
   "engines": [
     {
       "name": "cordova",
-      "version": ">=3.0.0"
+      "version": ">=6.0.0"
     }
   ],
   "author": "Wuglyak Bolgoink (info@cyberkatze.de)",
