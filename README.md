@@ -2,9 +2,9 @@
 [![Android](https://img.shields.io/badge/android-success-green.svg)](https://shields.io)
 [![iOS](https://img.shields.io/badge/iOS-success-green.svg)](https://shields.io)
 
-| iRoot |
-| :---: |
-| ![iRoot](assets/logo.png) |
+<p align="center">
+  <img src="/assets/logo.png">
+</p>
 
 Cordova Jailbreak/Root Detection Plugin
 =======================================
