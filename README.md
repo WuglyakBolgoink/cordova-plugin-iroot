@@ -9,7 +9,7 @@
 Cordova Jailbreak/Root Detection Plugin
 =======================================
 
-Use this plugin to add an extra layer of security for your app by detecting if the device was rooted (android) or jailbreaked (iOS).
+Use this plugin to add an extra layer of security for your app by detecting if the device was `root`ed (android) or `jailbreak`ed (iOS).
 
 ## Install
 
@@ -17,7 +17,7 @@ Use this plugin to add an extra layer of security for your app by detecting if t
 cordova plugin add cordova-plugin-iroot --save
 ```
 
-### Custom `Android` Install to prevent [`False positives`][https://github.com/scottyab/rootbeer#false-positives] checks
+### Custom `Android` Install to prevent [False positives](https://github.com/scottyab/rootbeer#false-positives) checks
 
 You can use `ENABLE_BUSYBOX_CHECK` variable to change the logic. By default is `true`.
 
@@ -41,6 +41,16 @@ IRoot.isRootedRedBeerWithoutBusyBoxCheck(successCallback, failureCallback);
 - `successCallback(result:boolean:ios|number:android)` is called with `true` if the device is Jailbroken/rooted, otherwise `false`.
 - `failureCallback(error:string)` is called if there was an error determining if the device is Jailbroken/rooted.
 
+## Info
+
+Based on:
+
+- **iOS**
+    - [cordova-plugin-jailbreak-detection](https://github.com/leecrossley/cordova-plugin-jailbreak-detection)
+    - [Shmoopi Anti-Piracy](https://github.com/Shmoopi/AntiPiracy)
+- **Android**
+    - [RootBeer](https://github.com/scottyab/rootbeer/blob/master/README.md)
+    - [cordova-plugin-root-detection](https://github.com/trykovyura/cordova-plugin-root-detection)
 
 ## Demo ionic
 
@@ -78,11 +88,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-## Info
-
-Based on:
-
-- [cordova-plugin-jailbreak-detection](https://github.com/leecrossley/cordova-plugin-jailbreak-detection) (iOS)
-- [cordova-plugin-root-detection](https://github.com/trykovyura/cordova-plugin-root-detection) (Android)
-- [RootBeer](https://github.com/scottyab/rootbeer/blob/master/README.md) (Android)
-- [Shmoopi Anti-Piracy](https://github.com/Shmoopi/AntiPiracy) (iOS)
