@@ -35,7 +35,7 @@ IRoot.isRooted(successCallback, failureCallback);
 IRoot.isRootedRedBeer(successCallback, failureCallback);
 
 // available => Android
-IRoot.isRootedRedBeerWithoutBusyBoxCheck(successCallback, failureCallback);
+IRoot.isRootedRedBeerWithoutBusyBox(successCallback, failureCallback);
 ```
 
 - `successCallback(result:boolean)` is called with `true` if the device is Jailbroken/rooted, otherwise `false`.
