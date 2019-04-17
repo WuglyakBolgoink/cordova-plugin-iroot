@@ -86,7 +86,7 @@ enum {
 
 - (bool) jailbroken {
 
-#if !(TARGET_IPHONE_SIMULATOR)
+if !(TARGET_IPHONE_SIMULATOR)
 
     if ([[NSFileManager defaultManager] fileExistsAtPath:@"/Applications/Cydia.app"])
     {
@@ -136,28 +136,29 @@ enum {
 
         (f = fopen("/bin/bash", "r")) ||
         (f = fopen("/bin/sh", "r")) ||
-        (f = fopen("/usr/sbin/sshd", "r")) ||
         (f = fopen("/usr/libexec/ssh-keysign", "r")) ||
-        (f = fopen("/usr/sbin/sshd", "r")) ||
-
         (f = fopen("/usr/bin/sshd", "r")) ||
         (f = fopen("/usr/libexec/sftp-server", "r")) ||
+
         (f = fopen("/etc/ssh/sshd_config", "r")) ||
         (f = fopen("/etc/apt", "r")) ||
         (f = fopen("/Applications/Cydia.app", "r")) ||
-
-
         (f = fopen("/Applications/RockApp.app", "r")) ||
         (f = fopen("/Applications/Icy.app", "r")) ||
+
         (f = fopen("/Applications/WinterBoard.app", "r")) ||
         (f = fopen("/Applications/SBSettings.app", "r")) ||
         (f = fopen("/Applications/MxTube.app", "r")) ||
-
         (f = fopen("/Applications/IntelliScreen.app", "r")) ||
         (f = fopen("/Applications/FakeCarrier.app", "r")) ||
+
         (f = fopen("/Applications/blackra1n.app", "r")) ||
         (f = fopen("/Applications/IntelliScreen.app", "r")) ||
-        (f = fopen("/Applications/FakeCarrier.app", "r"))
+        (f = fopen("/Applications/FakeCarrier.app", "r")) ||
+        (f = fopen("/usr/bin/frida-server", "r")) ||
+        (f = fopen("/usr/local/bin/cycript", "r")) ||
+
+        (f = fopen("/usr/lib/libcycript.dylib", "r"))
         )  {
         fclose(f);
         return YES;
@@ -287,7 +288,7 @@ enum {
     }
 
 
-#endif
+endif
 
     return NO;
 }
