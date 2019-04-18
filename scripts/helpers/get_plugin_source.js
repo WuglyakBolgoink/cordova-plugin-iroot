@@ -1,8 +1,8 @@
 var helpers = require('./');
+var path = require('path');
+var fs = require('fs');
 
 module.exports = function(platform) {
-    var path = this.requireCordovaModule('path');
-    var fs = this.requireCordovaModule('fs');
     var cordovaUtil = this.requireCordovaModule('cordova-lib/src/cordova/util');
     var projectRoot = cordovaUtil.isCordova();
     var platformPath = path.join(projectRoot, 'platforms', platform);
