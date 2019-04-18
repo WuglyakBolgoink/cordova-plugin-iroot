@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 var helpers = require('./helpers');
+var fs = require('fs');
 
 module.exports = function(context) {
-    var fs = context.requireCordovaModule('fs');
     var busyboxPreference = getPreference('ENABLE_BUSYBOX_CHECK');
 
     if (helpers.isVerbose(context)) {
