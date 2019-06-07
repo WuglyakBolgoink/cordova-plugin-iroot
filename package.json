@@ -3,6 +3,10 @@
   "version": "0.8.0",
   "description": "Cordova Jailbreak/Root Detection Plugin for Apache Cordova",
   "types": "./types/index.d.ts",
+  "scripts": {
+    "release:validate": "./scripts/validateRelease.sh",
+    "publish": "./scripts/publishRelease.sh"
+  },
   "cordova": {
     "id": "cordova-plugin-iroot",
     "platforms": [
