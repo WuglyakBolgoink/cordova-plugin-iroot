@@ -22,3 +22,4 @@ if [[ $TAG != $PACKAGE_VERSION ]]; then
 fi
 
 echo "TAG and PACKAGE_VERSION are valid"
+exit 0
