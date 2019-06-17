@@ -1,6 +1,6 @@
 {
   "name": "@aerogear/cordova-plugin-iroot",
-  "version": "v0.8.1-dev.2",
+  "version": "0.8.1-dev.2",
   "description": "Cordova Jailbreak/Root Detection Plugin for Apache Cordova",
   "types": "./types/index.d.ts",
   "scripts": {
