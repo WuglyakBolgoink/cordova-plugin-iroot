@@ -4,8 +4,8 @@
   "description": "Cordova Jailbreak/Root Detection Plugin for Apache Cordova",
   "types": "./types/index.d.ts",
   "scripts": {
-    "release:validate": "./scripts/validateRelease.sh",
-    "release": "./scripts/publishRelease.sh"
+    "release:validate": "./validateRelease.sh",
+    "release": "./publishRelease.sh"
   },
   "publishConfig": {
     "access": "public"
