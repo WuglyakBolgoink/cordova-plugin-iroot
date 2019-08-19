@@ -184,10 +184,8 @@ enum {
 
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"cydia://package/com.example.package"]])
     {
-
         return YES;
     }
-
 
     //Symbolic link verification
     struct stat s;
@@ -212,16 +210,6 @@ enum {
         [[NSFileManager defaultManager] removeItemAtPath:@"/private/test_jb.txt" error:nil];
         return YES;
     }
-
-
-
-
-
-
-
-
-
-
 
     //New Plugin
     // Make an int to monitor how many checks are failed
@@ -287,7 +275,6 @@ enum {
         return YES;
     }
 
-
 #endif
 
     return NO;
@@ -332,7 +319,6 @@ enum {
         return NOTJAIL;
     }
 }
-
 
 // Inaccessible Files Check
 - (int)inaccessibleFilesCheck {
@@ -560,11 +546,9 @@ enum {
             }
         }
     }
+
     // If no processes are found, return nothing
     return nil;
 }
-
-
-
 
 @end

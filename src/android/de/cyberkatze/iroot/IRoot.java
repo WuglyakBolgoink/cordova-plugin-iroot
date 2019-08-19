@@ -74,7 +74,6 @@ public class IRoot extends CordovaPlugin {
 
         if (act == null) {
             cordova.getActivity().runOnUiThread(new Runnable() {
-
                 public void run() {
                     LOG.e(LOG_TAG, "unknown action");
                     callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "unknown action"));
