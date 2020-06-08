@@ -4,3 +4,6 @@ Thumbs.db
 Desktop.ini
 .DS_Store
 /node_modules
+
+src/android/gradle*
+src/android/.gradle*
