@@ -19,8 +19,6 @@
         <clobbers target="IRoot"/>
     </js-module>
 
-    <preference name="ENABLE_BUSYBOX_CHECK" default="true" />
-
     <platform name="ios">
         <config-file parent="/*" target="config.xml">
             <feature name="IRoot">
