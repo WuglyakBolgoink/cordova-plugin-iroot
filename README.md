@@ -14,15 +14,7 @@ Use this plugin to add an extra layer of security for your app by detecting if t
 ## Install
 
 ```
-cordova plugin add cordova-plugin-iroot --save
-```
-
-### Custom `Android` Install to prevent [False positives](https://github.com/scottyab/rootbeer#false-positives) checks
-
-You can use `ENABLE_BUSYBOX_CHECK` variable to change the logic. By default is `true`.
-
-```
-cordova plugin add cordova-plugin-iroot --variable ENABLE_BUSYBOX_CHECK=false --save
+cordova plugin add cordova-plugin-iroot
 ```
 
 ## Usage in Javascript
@@ -32,10 +24,7 @@ cordova plugin add cordova-plugin-iroot --variable ENABLE_BUSYBOX_CHECK=false --
 IRoot.isRooted(successCallback, failureCallback);
 
 // available => Android
-IRoot.isRootedRedBeer(successCallback, failureCallback);
-
-// available => Android
-IRoot.isRootedRedBeerWithoutBusyBoxCheck(successCallback, failureCallback);
+IRoot.isRootedWithBusyBox(successCallback, failureCallback);
 ```
 
 - `successCallback(result:boolean)` is called with `true` if the device is Jailbroken/rooted, otherwise `false`.
