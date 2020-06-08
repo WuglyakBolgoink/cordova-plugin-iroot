@@ -21,9 +21,6 @@
 
     <preference name="ENABLE_BUSYBOX_CHECK" default="true" />
 
-    <hook type="after_plugin_install" src="scripts/handle_plugin_preferences.js" />
-    <hook type="before_prepare" src="scripts/handle_plugin_preferences.js" />
-
     <platform name="ios">
         <config-file parent="/*" target="config.xml">
             <feature name="IRoot">
