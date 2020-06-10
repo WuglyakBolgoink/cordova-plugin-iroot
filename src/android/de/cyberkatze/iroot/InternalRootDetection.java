@@ -163,7 +163,12 @@ public class InternalRootDetection {
 
     /**
      * Simple implementation.
-     * TODO: move in another class.
+     * <p>TODO: move in another class.</p>
+     * <p>TODO: check this repos:</p>
+     * <ul>
+     *     <li><a href="https://github.com/strazzere/anti-emulator">anti-emulator</a></li>
+     *     <li><a href="https://github.com/framgia/android-emulator-detector">android-emulator-detector</a></li>
+     * </ul>
      *
      * @return true if running on emulator.
      *
