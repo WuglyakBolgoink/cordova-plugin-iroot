@@ -16,21 +16,21 @@ public class InternalRootDetection {
 
     public boolean isRooted(final Context context) {
         boolean c1 = isExistBuildTags();
-        boolean c2 = isExistSuperUserApk();
+        boolean c2 = doesSuperuserApkExist();
         boolean c3 = isExistSUPath();
         boolean c4 = checkDirPermissions();
         boolean c5 = checkExecutingCommands();
         boolean c6 = checkInstalledPackages(context);
-        boolean c7 = checkOTACertificates();
+        boolean c7 = checkforOverTheAirCertificates();
         boolean c8 = isRunningOnEmulator();
 
         LOG.d(Constants.LOG_TAG, "check c1 = isExistBuildTags: " + c1);
-        LOG.d(Constants.LOG_TAG, "check c2 = isExistSuperUserApk: " + c2);
+        LOG.d(Constants.LOG_TAG, "check c2 = doesSuperuserApkExist: " + c2);
         LOG.d(Constants.LOG_TAG, "check c3 = isExistSUPath: " + c3);
         LOG.d(Constants.LOG_TAG, "check c4 = checkDirPermissions: " + c4);
         LOG.d(Constants.LOG_TAG, "check c5 = checkExecutingCommands: " + c5);
         LOG.d(Constants.LOG_TAG, "check c6 = checkInstalledPackages: " + c6);
-        LOG.d(Constants.LOG_TAG, "check c7 = checkOTACertificates: " + c7);
+        LOG.d(Constants.LOG_TAG, "check c7 = checkforOverTheAirCertificates: " + c7);
         LOG.d(Constants.LOG_TAG, "check c8 = isRunningOnEmulator: " + c8);
 
         boolean result = c1 || c2 || c3 || c4 || c5 || c6 || c7 || c8;
@@ -68,7 +68,15 @@ public class InternalRootDetection {
     }
 
     /**
-     * Checking rooted or not by 'android.os.Build.TAGS' contains test-keys.
+     * Checking the BUILD tag for test-keys. By default, stock Android ROMs from Google are built with release-keys tags.
+     * If test-keys are present, this can mean that the Android build on the device is either a developer build
+     * or an unofficial Google build.
+     *
+     * For example: Nexus 4 is running stock Android from Google’s (Android Open Source Project) AOSP.
+     * This is why the build tags show "release-keys".
+     *
+     * > root@android:/ # cat /system/build.prop | grep ro.build.tags
+     * > ro.build.tags=release-keys
      */
     private boolean isExistBuildTags() {
         boolean result = false;
@@ -90,21 +98,24 @@ public class InternalRootDetection {
 
     /**
      * Checks whether the Superuser.apk is present in the system applications.
+     *
+     * Superuser.apk. This package is most often looked for on rooted devices.
+     * Superuser allows the user to authorize applications to run as root on the device.
      */
-    private boolean isExistSuperUserApk() {
+    private boolean doesSuperuserApkExist() {
         boolean result = false;
 
         for (String path : Constants.SUPER_USER_APK_FILES) {
-            final File suAPK = new File(path);
+            final File rootFile = new File(path);
 
-            if (suAPK.exists()) {
-                LOG.d(Constants.LOG_TAG, String.format("[isExistSuperUserApk] found SU apk: %s", path));
+            if (rootFile.exists()) {
+                LOG.d(Constants.LOG_TAG, String.format("[doesSuperuserApkExist] found SU apk: %s", path));
 
                 result = true;
             }
         }
 
-        LOG.d(Constants.LOG_TAG, String.format("[isExistSuperUserApk] result: %s", result));
+        LOG.d(Constants.LOG_TAG, String.format("[doesSuperuserApkExist] result: %s", result));
 
         return result;
     }
@@ -174,13 +185,20 @@ public class InternalRootDetection {
     }
 
     /**
-     * Check to see if the file /etc/security/otacerts.zip exists.
+     * Checking for Over The Air (OTA) certificates.
+     *
+     * By default, Android is updated OTA using public certs from Google. If the certs are not there,
+     * this usually means that there is a custom ROM installed which is updated through other means.
+     *
+     * For example: Nexus 4 has no custom ROM and is updated through Google. Updating this device however, will probably break root.
+     * > 1|bullhead:/ $ ls -l /etc/security/otacerts.zip
+     * > -rw-r--r-- 1 root root 1544 2009-01-01 09:00 /etc/security/otacerts.zip
      */
-    private boolean checkOTACertificates() {
+    private boolean checkforOverTheAirCertificates() {
         File otacerts = new File(Constants.OTA_CERTIFICATES_PATH);
-        boolean result = otacerts.exists();
+        boolean result = !otacerts.exists();
 
-        LOG.d(Constants.LOG_TAG, String.format("[checkOTACertificates] result: %s", result));
+        LOG.d(Constants.LOG_TAG, String.format("[checkforOverTheAirCertificates] result: %s", result));
 
         return result;
     }

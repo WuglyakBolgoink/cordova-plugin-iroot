@@ -24,7 +24,13 @@ public final class Constants {
             "/system/app/superuser/Superuser.apk",
             "/system/app/superuser/superuser.apk"
     );
-    // todo
+
+    /**
+             * Other packages. The following list of packages are often looked for as well.
+             * The last two facilitate in temporarily hiding the su binary and disabling installed applications.
+             *
+             * Any chainfire package. One MDM looks for any package that is developed by chainfire. The most notable one being SuperSU.
+             */
     public static final List<String> BLACKLISTED_PACKAGES = Arrays.asList(
             "com.noshufou.android.su",
             "com.thirdparty.superuser",
@@ -33,7 +39,7 @@ public final class Constants {
             "com.zachspong.temprootremovejb",
             "com.ramdroid.appquarantine"
     );
-    // todo
+
     public static final List<String> ROOT_ONLY_APPLICATIONS = Arrays.asList(
             "eu.chainfire.stickmount",
             "eu.chainfire.mobileodin.pro",
@@ -46,7 +52,14 @@ public final class Constants {
             "eu.chainfire.triangleaway",
             "org.adblockplus.android"
     );
-    // TODO: check why this folders was commented in rootbeer library!
+
+    /**
+     * Sometimes when a device has root, the permissions are changed on common directories.
+     *
+     * Can we read files in /data. The /data directory contains all the installed application files. By default, /data is not readable.
+     *
+     * TODO: check why this folders was commented in rootbeer library!
+     */
     public static final List<String> PATHS_THAT_SHOULD_NOT_BE_WRITABLE = Arrays.asList(
             "/data",
             "/",
@@ -63,6 +76,8 @@ public final class Constants {
     );
 
     /**
+     * Su Binaries. The following list of Su binaries are often looked for on rooted devices.
+     *
      * @see <a href="https://owasp.org/www-project-mobile-top-10/2016-risks/m8-code-tampering">(2016) OWASP-mobile-top-10 m8-code-tampering</a>
      * @see <a href="https://owasp.org/www-project-mobile-top-10/2014-risks/m10-lack-of-binary-protections">(2014) OWASP-mobile-top-10 m10-lack-of-binary-protections</a>
      */
@@ -81,7 +96,10 @@ public final class Constants {
             // added from https://github.com/jacer2020/jacer2020/blob/49ce0b3d137adc21437c72a4c77ef91097df11ad/jsdroid-commons/src/main/java/com/jsdroid/commons/RootHelper.java#L27
             "/su/bin/su",
             "/ipcData/local/su",
-            "/ipcData/local/xbin/su"
+            "/ipcData/local/xbin/su",
+            // added from https://blog.netspi.com/android-root-detection-techniques/
+            "/system/usr/we-need-root/su-backup",
+            "/system/xbin/mu"
     );
 
     // ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---
