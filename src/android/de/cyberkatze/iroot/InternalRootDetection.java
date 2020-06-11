@@ -12,17 +12,28 @@ import java.util.List;
 
 public class InternalRootDetection {
 
-    // ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---
+    // ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---
 
     public boolean isRooted(final Context context) {
-        return isExistBuildTags()
-                || isExistSuperUserApk()
-                || isExistSUPath()
-                || checkDirPermissions()
-                || checkExecutingCommands()
-                || checkInstalledPackages(context)
-                || checkOTACertificates()
-                || isRunningOnEmulator();
+        boolean c1 = isExistBuildTags();
+        boolean c2 = isExistSuperUserApk();
+        boolean c3 = isExistSUPath();
+        boolean c4 = checkDirPermissions();
+        boolean c5 = checkExecutingCommands();
+        boolean c6 = checkInstalledPackages(context);
+        boolean c7 = checkOTACertificates();
+        boolean c8 = isRunningOnEmulator();
+
+        LOG.d(Constants.LOG_TAG, "check c1 = isExistBuildTags: " + c1);
+        LOG.d(Constants.LOG_TAG, "check c2 = isExistSuperUserApk: " + c2);
+        LOG.d(Constants.LOG_TAG, "check c3 = isExistSUPath: " + c3);
+        LOG.d(Constants.LOG_TAG, "check c4 = checkDirPermissions: " + c4);
+        LOG.d(Constants.LOG_TAG, "check c5 = checkExecutingCommands: " + c5);
+        LOG.d(Constants.LOG_TAG, "check c6 = checkInstalledPackages: " + c6);
+        LOG.d(Constants.LOG_TAG, "check c7 = checkOTACertificates: " + c7);
+        LOG.d(Constants.LOG_TAG, "check c8 = isRunningOnEmulator: " + c8);
+
+        return c1 || c2 || c3 || c4 || c5 || c6 || c7 || c8;
     }
 
     /**
@@ -32,6 +43,7 @@ public class InternalRootDetection {
     private boolean checkDirPermissions() {
         boolean isWritableDir;
         boolean isReadableDataDir;
+        boolean result = false;
 
         for (String dirName : Constants.PATHS_THAT_SHOULD_NOT_BE_WRITABLE) {
             final File currentDir = new File(dirName);
@@ -40,56 +52,78 @@ public class InternalRootDetection {
             isReadableDataDir = (dirName.equals("/data") && currentDir.canRead());
 
             if (isWritableDir || isReadableDataDir) {
-                return true;
+                LOG.d(Constants.LOG_TAG, String.format("[checkDirPermissions] check [%s] => [isWritable:%s][isReadableData:%s]", dirName, isWritableDir, isReadableDataDir));
+
+                result = true;
             }
         }
 
-        return false;
+        LOG.d(Constants.LOG_TAG, "[checkDirPermissions] result: " + result);
+
+        return result;
     }
 
     /**
      * Checking rooted or not by 'android.os.Build.TAGS' contains test-keys.
      */
     private boolean isExistBuildTags() {
-        try {
-            String buildTags = Constants.ANDROID_OS_BUILD_TAGS;
+            boolean result = false;
 
-            LOG.d(Constants.LOG_TAG, "buildTags: " + buildTags);
+            try {
+                String buildTags = Constants.ANDROID_OS_BUILD_TAGS;
 
-            return (buildTags != null) && buildTags.contains("test-keys");
-        } catch (Exception e) {
-            LOG.e(Constants.LOG_TAG, e.getMessage());
+                LOG.d(Constants.LOG_TAG, "buildTags: " + buildTags);
+
+                result = (buildTags != null) && buildTags.contains("test-keys");
+            } catch (Exception e) {
+                LOG.e(Constants.LOG_TAG, "[isExistBuildTags] Error: " + e.getMessage());
+            }
+
+            LOG.d(Constants.LOG_TAG, "[isExistBuildTags] result: " + result);
+
+            return result;
         }
-
-        return false;
-    }
 
     /**
      * Checks whether the Superuser.apk is present in the system applications.
      */
     private boolean isExistSuperUserApk() {
-        for (String path : Constants.SUPER_USER_APK_FILES) {
-            final File suAPK = new File(path);
+        boolean result = false;
 
-            if (suAPK.exists()) {
-                return true;
-            }
-        }
+                for (String path : Constants.SUPER_USER_APK_FILES) {
+                    final File suAPK = new File(path);
 
-        return false;
+                    if (suAPK.exists()) {
+                        LOG.d(Constants.LOG_TAG, "[isExistSuperUserApk] found SU apk: " + path);
+
+                        result = true;
+                    }
+                }
+
+                LOG.d(Constants.LOG_TAG, "[isExistSuperUserApk] result: " + result);
+
+                return result;
     }
 
     /**
      * Checking if SU path exist (case sensitive).
      */
     private boolean isExistSUPath() {
-        for (String path : Constants.SU_PATHES) {
-            if (new File(path).exists()) {
-                return true;
-            }
-        }
+        boolean result = false;
 
-        return false;
+                for (String path : Constants.SU_PATHES) {
+                    final File suPath = new File(path);
+
+                    if (suPath.exists()) {
+                        LOG.d(Constants.LOG_TAG, "[isExistSUPath] found SU path: " + path);
+
+                        result = true;
+                    }
+                }
+
+                LOG.d(Constants.LOG_TAG, "[isExistSUPath] result: " + result);
+
+                return result;
     }
 
     /**
@@ -107,13 +141,6 @@ public class InternalRootDetection {
             final String packageName = packageInfo.packageName;
 
             LOG.d(Constants.LOG_TAG, "[checkInstalledPackages] Check package [" + packageName + "]");
-
-            try {
-                LOG.d(Constants.LOG_TAG, "[checkInstalledPackages] PackageManager.getPackageInfo: " + pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES));
-                LOG.d(Constants.LOG_TAG, "[checkInstalledPackages] PackageManager.getPackageInfo: [" + packageName + "] installed");
-            } catch (PackageManager.NameNotFoundException e) {
-                LOG.d(Constants.LOG_TAG, "[checkInstalledPackages] PackageManager.getPackageInfo: [" + packageName + "] not installed");
-            }
 
             if (Constants.BLACKLISTED_PACKAGES.contains(packageName)) {
                 LOG.d(Constants.LOG_TAG, "[checkInstalledPackages] Package [" + packageName + "] found in BLACKLISTED_PACKAGES");
