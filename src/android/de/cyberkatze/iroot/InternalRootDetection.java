@@ -33,7 +33,11 @@ public class InternalRootDetection {
         LOG.d(Constants.LOG_TAG, "check c7 = checkOTACertificates: " + c7);
         LOG.d(Constants.LOG_TAG, "check c8 = isRunningOnEmulator: " + c8);
 
-        return c1 || c2 || c3 || c4 || c5 || c6 || c7 || c8;
+        boolean result = c1 || c2 || c3 || c4 || c5 || c6 || c7 || c8;
+
+        LOG.d(Constants.LOG_TAG, String.format("[checkDirPermissions] result: %s", result));
+
+        return result;
     }
 
     /**
@@ -58,7 +62,7 @@ public class InternalRootDetection {
             }
         }
 
-        LOG.d(Constants.LOG_TAG, "[checkDirPermissions] result: " + result);
+        LOG.d(Constants.LOG_TAG, String.format("[checkDirPermissions] result: %s", result));
 
         return result;
     }
@@ -67,22 +71,22 @@ public class InternalRootDetection {
      * Checking rooted or not by 'android.os.Build.TAGS' contains test-keys.
      */
     private boolean isExistBuildTags() {
-            boolean result = false;
+        boolean result = false;
 
-            try {
-                String buildTags = Constants.ANDROID_OS_BUILD_TAGS;
+        try {
+            String buildTags = Constants.ANDROID_OS_BUILD_TAGS;
 
-                LOG.d(Constants.LOG_TAG, "buildTags: " + buildTags);
+            // LOG.d(Constants.LOG_TAG, String.format("[isExistBuildTags] buildTags: %s", buildTags));
 
-                result = (buildTags != null) && buildTags.contains("test-keys");
-            } catch (Exception e) {
-                LOG.e(Constants.LOG_TAG, "[isExistBuildTags] Error: " + e.getMessage());
-            }
-
-            LOG.d(Constants.LOG_TAG, "[isExistBuildTags] result: " + result);
-
-            return result;
+            result = (buildTags != null) && buildTags.contains("test-keys");
+        } catch (Exception e) {
+            LOG.e(Constants.LOG_TAG, String.format("[isExistBuildTags] Error: %s", e.getMessage()));
         }
+
+        LOG.d(Constants.LOG_TAG, String.format("[isExistBuildTags] result: %s", result));
+
+        return result;
+    }
 
     /**
      * Checks whether the Superuser.apk is present in the system applications.
@@ -90,19 +94,19 @@ public class InternalRootDetection {
     private boolean isExistSuperUserApk() {
         boolean result = false;
 
-                for (String path : Constants.SUPER_USER_APK_FILES) {
-                    final File suAPK = new File(path);
+        for (String path : Constants.SUPER_USER_APK_FILES) {
+            final File suAPK = new File(path);
 
-                    if (suAPK.exists()) {
-                        LOG.d(Constants.LOG_TAG, "[isExistSuperUserApk] found SU apk: " + path);
+            if (suAPK.exists()) {
+                LOG.d(Constants.LOG_TAG, String.format("[isExistSuperUserApk] found SU apk: %s", path));
 
-                        result = true;
-                    }
-                }
+                result = true;
+            }
+        }
 
-                LOG.d(Constants.LOG_TAG, "[isExistSuperUserApk] result: " + result);
+        LOG.d(Constants.LOG_TAG, String.format("[isExistSuperUserApk] result: %s", result));
 
-                return result;
+        return result;
     }
 
     /**
@@ -111,19 +115,19 @@ public class InternalRootDetection {
     private boolean isExistSUPath() {
         boolean result = false;
 
-                for (String path : Constants.SU_PATHES) {
-                    final File suPath = new File(path);
+        for (String path : Constants.SU_PATHES) {
+            final File suPath = new File(path);
 
-                    if (suPath.exists()) {
-                        LOG.d(Constants.LOG_TAG, "[isExistSUPath] found SU path: " + path);
+            if (suPath.exists()) {
+                LOG.d(Constants.LOG_TAG, String.format("[isExistSUPath] found SU path: %s", path));
 
-                        result = true;
-                    }
-                }
+                result = true;
+            }
+        }
 
-                LOG.d(Constants.LOG_TAG, "[isExistSUPath] result: " + result);
+        LOG.d(Constants.LOG_TAG, String.format("[isExistSUPath] result: %s", result));
 
-                return result;
+        return result;
     }
 
     /**
@@ -140,38 +144,45 @@ public class InternalRootDetection {
         for (PackageInfo packageInfo : installedPackages) {
             final String packageName = packageInfo.packageName;
 
-            LOG.d(Constants.LOG_TAG, "[checkInstalledPackages] Check package [" + packageName + "]");
-
             if (Constants.BLACKLISTED_PACKAGES.contains(packageName)) {
-                LOG.d(Constants.LOG_TAG, "[checkInstalledPackages] Package [" + packageName + "] found in BLACKLISTED_PACKAGES");
+                LOG.d(Constants.LOG_TAG, String.format("[checkInstalledPackages] Package [%s] found in BLACKLISTED_PACKAGES", packageName));
 
                 return true;
             }
 
             if (Constants.ROOT_ONLY_APPLICATIONS.contains(packageName)) {
-                LOG.d(Constants.LOG_TAG, "[checkInstalledPackages] Package [" + packageName + "] found in ROOT_ONLY_APPLICATIONS");
+                LOG.d(Constants.LOG_TAG, String.format("[checkInstalledPackages] Package [%s] found in ROOT_ONLY_APPLICATIONS", packageName));
 
                 rootOnlyAppCount += 1;
             }
 
             // Check to see if the Cydia Substrate exists.
             if (Constants.CYDIA_SUBSTRATE_PACKAGE.equals(packageName)) {
-                LOG.d(Constants.LOG_TAG, "[checkInstalledPackages] Package [" + packageName + "] found in CYDIA_SUBSTRATE_PACKAGE");
+                LOG.d(Constants.LOG_TAG, String.format("[checkInstalledPackages] Package [%s] found in CYDIA_SUBSTRATE_PACKAGE", packageName));
 
                 rootOnlyAppCount += 1;
             }
         }
 
-        return rootOnlyAppCount > 2; // todo: why?
+        LOG.d(Constants.LOG_TAG, String.format("[checkInstalledPackages] count of root-only apps: %s", rootOnlyAppCount));
+
+        boolean result = rootOnlyAppCount > 2; // todo: why?
+
+        LOG.d(Constants.LOG_TAG, String.format("[checkInstalledPackages] result: %s", result));
+
+        return result;
     }
 
     /**
      * Check to see if the file /etc/security/otacerts.zip exists.
      */
     private boolean checkOTACertificates() {
-        String otacerts = Constants.OTA_CERTIFICATES_PATH;
+        File otacerts = new File(Constants.OTA_CERTIFICATES_PATH);
+        boolean result = otacerts.exists();
 
-        return new File(otacerts).exists();
+        LOG.d(Constants.LOG_TAG, String.format("[checkOTACertificates] result: %s", result));
+
+        return result;
     }
 
     /**
@@ -183,37 +194,55 @@ public class InternalRootDetection {
      * @see <a href="https://github.com/tansiufang54/fncgss/blob/master/app/src/main/java/co/id/franknco/controller/RootUtil.java">adopted tansiufang54 RootUtils.java</a>
      */
     private boolean checkExecutingCommands() {
-        return Utils.canExecuteCommand("/system/xbin/which su")
-                || Utils.canExecuteCommand("/system/bin/which su")
-                || Utils.canExecuteCommand("which su");
+        boolean c1 = Utils.canExecuteCommand("/system/xbin/which su");
+        boolean c2 = Utils.canExecuteCommand("/system/bin/which su");
+        boolean c3 = Utils.canExecuteCommand("which su");
+
+        boolean result = c1 || c2 || c3;
+
+        LOG.d(Constants.LOG_TAG, String.format("[checkExecutingCommands] result [%s] => [c1:%s][c2:%s][c3:%s]", result, c1, c2, c3));
+
+        return result;
     }
 
     /**
      * Simple implementation.
-     * <p>TODO: move in another class.</p>
-     * <p>TODO: check this repos:</p>
-     * <ul>
-     *     <li><a href="https://github.com/strazzere/anti-emulator">anti-emulator</a></li>
-     *     <li><a href="https://github.com/framgia/android-emulator-detector">android-emulator-detector</a></li>
-     * </ul>
+     * <p>
+     * TODO: move in another class.
+     * TODO: check this repos:
      *
-     * @return true if running on emulator.
-     *
+     * @see <a href="https://github.com/strazzere/anti-emulator">anti-emulator</a>
+     * @see <a href="https://github.com/framgia/android-emulator-detector">android-emulator-detector</a>
      * @see <a href="https://github.com/testmandy/NativeAdLibrary-master/blob/68e1a972fc746a0b51395f813f5bcf32fd619376/library/src/main/java/me/dt/nativeadlibary/util/RootUtil.java#L59">testmandy RootUtil.java</a>
      */
     public boolean isRunningOnEmulator() {
         Utils.getDeviceInfo();
 
-        return Build.FINGERPRINT.startsWith("generic")
-                // ||Build.FINGERPRINT.startsWith("unknown") // Meizu Mx Pro will return unknown, so comment it!
-                || Build.MODEL.contains("google_sdk")
-                || Build.MODEL.contains("Emulator")
-                || Build.MODEL.contains("Android SDK built for x86")
-                || Build.BOARD.equals("QC_Reference_Phone") //bluestacks
-                || Build.HOST.startsWith("Build") //MSI App Player
-                || Build.MANUFACTURER.contains("Genymotion")
-                || Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic")
-                || "google_sdk".equals(Build.PRODUCT);
+        boolean simpleCheck = Build.MODEL.contains("Emulator")
+            // ||Build.FINGERPRINT.startsWith("unknown") // Meizu Mx Pro will return unknown, so comment it!
+            || Build.MODEL.contains("Android SDK built for x86")
+            || Build.BOARD.equals("QC_Reference_Phone") //bluestacks
+            || Build.HOST.startsWith("Build"); //MSI App Player
+
+        boolean checkGenymotion = Build.MANUFACTURER.contains("Genymotion");
+        boolean checkGeneric = Build.FINGERPRINT.startsWith("generic") || (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"));
+        boolean checkGoogleSDK = Build.MODEL.contains("google_sdk") || "google_sdk".equals(Build.PRODUCT);
+
+        boolean result = simpleCheck || checkGenymotion || checkGeneric || checkGoogleSDK;
+
+        LOG.d(
+            Constants.LOG_TAG,
+            String.format(
+                "[isRunningOnEmulator] result [%s] => [simpleCheck:%s][checkGenymotion:%s][checkGeneric:%s][checkGoogleSDK:%s]",
+                result,
+                simpleCheck,
+                checkGenymotion,
+                checkGeneric,
+                checkGoogleSDK
+            )
+        );
+
+        return result;
     }
 
     // TODO: https://github.com/tansiufang54/fncgss/blob/master/app/src/main/java/co/id/franknco/controller/RootUtil.java#L126
