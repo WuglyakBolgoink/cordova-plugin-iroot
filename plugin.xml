@@ -19,11 +19,6 @@
         <clobbers target="IRoot"/>
     </js-module>
 
-    <preference name="ENABLE_BUSYBOX_CHECK" default="true" />
-
-    <hook type="after_plugin_install" src="scripts/handle_plugin_preferences.js" />
-    <hook type="before_prepare" src="scripts/handle_plugin_preferences.js" />
-
     <platform name="ios">
         <config-file parent="/*" target="config.xml">
             <feature name="IRoot">
@@ -31,7 +26,9 @@
                 <param name="onload" value="true"/>
             </feature>
         </config-file>
+
         <header-file src="src/ios/IRoot.h"/>
+
         <source-file src="src/ios/IRoot.m"/>
     </platform>
 
@@ -42,8 +39,15 @@
                 <param name="onload" value="true"/>
             </feature>
         </config-file>
+
         <config-file parent="/*" target="AndroidManifest.xml"/>
+
+        <source-file src="src/android/de/cyberkatze/iroot/Constants.java" target-dir="src/de/cyberkatze/iroot"/>
+        <source-file src="src/android/de/cyberkatze/iroot/CordovaActions.java" target-dir="src/de/cyberkatze/iroot"/>
+        <source-file src="src/android/de/cyberkatze/iroot/InternalRootDetection.java" target-dir="src/de/cyberkatze/iroot"/>
         <source-file src="src/android/de/cyberkatze/iroot/IRoot.java" target-dir="src/de/cyberkatze/iroot"/>
+        <source-file src="src/android/de/cyberkatze/iroot/Utils.java" target-dir="src/de/cyberkatze/iroot"/>
+
         <framework custom="true" src="src/android/build-extras.gradle" type="gradleReference"/>
     </platform>
 
