@@ -75,7 +75,8 @@ See [comments](https://github.com/WuglyakBolgoink/cordova-plugin-iroot/issues/1)
   > tmpfs                   958500         0    958500   0% /mnt/secure
   > tmpfs                   958500         0    958500   0% /mnt/asec
   > tmpfs                   958500         0    958500   0% /mnt/obb
-
+4. Check library
+  - https://github.com/Stericson/RootTools/tree/master/src/main/java/com/stericson/RootTools
 
 ## License
 
