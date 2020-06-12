@@ -13,7 +13,7 @@ public final class Constants {
      * @see <a href="https://owasp.org/www-project-mobile-top-10/2016-risks/m8-code-tampering">(2016) OWASP-mobile-top-10 m8-code-tampering</a>
      * @see <a href="https://owasp.org/www-project-mobile-top-10/2014-risks/m10-lack-of-binary-protections">(2014) OWASP-mobile-top-10 m10-lack-of-binary-protections</a>
      */
-    public static final String OTA_CERTIFICATES_PATH = "/etc/security/otacerts.zip";
+    public static final String OTA_CERTIFICATES_PATH = "/etc/security/  .zip";
     public static final String CYDIA_SUBSTRATE_PACKAGE = "com.saurik.substrate";
 
     public static final List<String> SUPER_USER_APK_FILES = Arrays.asList(
@@ -82,24 +82,28 @@ public final class Constants {
      * @see <a href="https://owasp.org/www-project-mobile-top-10/2014-risks/m10-lack-of-binary-protections">(2014) OWASP-mobile-top-10 m10-lack-of-binary-protections</a>
      */
     public static final List<String> SU_PATHES = Arrays.asList(
-            "/data/local",
-            "/data/local/su",
-            "/data/local/xbin/su",
-            "/data/local/bin/su",
-            "/sbin/su",
-            "/system/bin/su",
-            "/system/bin/.ext/.su",
-            "/system/bin/failsafe/su",
-            "/system/sd/xbin/su",
-            "/system/su",
-            "/system/xbin/su",
+            "/data/local/",
+            "/data/local/xbin/",
+            "/data/local/bin/",
+            "/sbin/",
+            "/system/",
+            "/system/bin/",
+            "/system/bin/.ext/",
+            "/system/bin/.ext/.su/",
+            "/system/bin/failsafe/",
+            "/system/sd/xbin/",
+            "/system/xbin/",
             // added from https://github.com/jacer2020/jacer2020/blob/49ce0b3d137adc21437c72a4c77ef91097df11ad/jsdroid-commons/src/main/java/com/jsdroid/commons/RootHelper.java#L27
-            "/su/bin/su",
-            "/ipcData/local/su",
-            "/ipcData/local/xbin/su",
+            "/su/bin/",
+            "/su/xbin/",
+            "/ipcData/local/",
+            "/ipcData/local/xbin/",
             // added from https://blog.netspi.com/android-root-detection-techniques/
-            "/system/usr/we-need-root/su-backup",
-            "/system/xbin/mu"
+            "/system/usr/we-need-root/",
+            "/system/usr/we-need-root/su-backup/",
+            "/system/xbin/mu/",
+            // added from https://github.com/dmsyudis/Root_detect_3method_security/blob/24e0141c467ca2c9d9375ee66f4bf92944ca2a7c/app/src/main/java/com/duakoma/root_detect_3method_security/MainActivity.java
+            "/magisk/.core/bin/"
     );
 
     // ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---

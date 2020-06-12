@@ -124,13 +124,17 @@ public class InternalRootDetection {
      * Checking if SU path exist (case sensitive).
      */
     private boolean isExistSUPath() {
+        final String[] pathsArray = Constants.SU_PATHES.toArray(new String[0]);
+
         boolean result = false;
 
-        for (String path : Constants.SU_PATHES) {
-            final File suPath = new File(path);
+        for (final String path : pathsArray) {
+            final String completePath = path + "su";
+            final File suPath = new File(completePath);
+            final boolean fileExists = suPath.exists();
 
-            if (suPath.exists()) {
-                LOG.d(Constants.LOG_TAG, String.format("[isExistSUPath] found SU path: %s", path));
+            if (fileExists) {
+                LOG.d(Constants.LOG_TAG, String.format("[isExistSUPath] binary [%s] detected!", path));
 
                 result = true;
             }
