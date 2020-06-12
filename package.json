@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-iroot",
-  "version": "0.8.1",
+  "version": "1.0.0",
   "description": "Cordova Jailbreak/Root Detection Plugin for Apache Cordova",
   "types": "./types/index.d.ts",
   "cordova": {

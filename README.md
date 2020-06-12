@@ -1,6 +1,8 @@
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/WuglyakBolgoink/cordova-plugin-iroot/master/LICENSE)
-[![Android](https://img.shields.io/badge/android-success-green.svg)](https://shields.io)
-[![iOS](https://img.shields.io/badge/iOS-success-green.svg)](https://shields.io)
+![version][version-shield]
+[![Android][android-shield]][cordova-android-link]
+[![iOS][ios-shield]][cordova-ios-link]
+[![License][license-shield]](LICENSE)
+[![BuyMeCoffee][buymecoffee-shield]][buymecoffee-link]
 
 <p align="center">
   <img src="/assets/logo.png">
@@ -9,7 +11,7 @@
 Cordova Jailbreak/Root Detection Plugin
 =======================================
 
-Use this plugin to add an extra layer of security for your app by detecting if the device was `root`ed (android) or `jailbreak`ed (iOS).
+Use this plugin to add an extra layer of security for your app by detecting if the device was `root`ed (on android) or `jailbreak`ed (on iOS).
 
 ## Install
 
@@ -59,11 +61,6 @@ Based on:
   - [cordova-plugin-root-detection](https://github.com/trykovyura/cordova-plugin-root-detection)
 - **Articles**
   - [Android Root Detection Techniques](https://blog.netspi.com/android-root-detection-techniques/)
-- **Repos**
-  - ...
-## Demo ionic
-
-See [comments](https://github.com/WuglyakBolgoink/cordova-plugin-iroot/issues/1).
 
 ## Contributing
 
@@ -94,3 +91,16 @@ See [comments](https://github.com/WuglyakBolgoink/cordova-plugin-iroot/issues/1)
   > tmpfs                   958500         0    958500   0% /mnt/obb
 4. Check library
   - https://github.com/Stericson/RootTools/tree/master/src/main/java/com/stericson/RootTools
+
+[license-shield]:https://img.shields.io/github/license/WuglyakBolgoink/cordova-plugin-iroot?style=flat
+
+[buymecoffee-link]: https://www.buymeacoffee.com/aesaythx?style=flat
+[buymecoffee-shield]: https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg?style=flat
+
+[version-shield]: https://img.shields.io/github/package-json/v/WuglyakBolgoink/cordova-plugin-iroot?color=green
+
+[android-shield]: https://img.shields.io/badge/cordova-android-green.svg?style=flat&logo=apache-cordova
+[cordova-android-link]: https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html
+
+[ios-shield]: https://img.shields.io/badge/cordova-ios-green.svg?style=flat&logo=apache-cordova
+[cordova-ios-link]: https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html
