@@ -1,8 +1,6 @@
 ![version][version-shield]
-
 [![Android][android-shield]][cordova-android-link]
 [![iOS][ios-shield]][cordova-ios-link]
-
 [![License][license-shield]](LICENSE)
 [![BuyMeCoffee][buymecoffee-shield]][buymecoffee-link]
 
