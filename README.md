@@ -17,6 +17,23 @@ Use this plugin to add an extra layer of security for your app by detecting if t
 cordova plugin add cordova-plugin-iroot
 ```
 
+## postInstall
+
+### iOS
+
+To avoid errors like
+
+> -canOpenURL: failed for URL: "cydia://package/com.example.package" - error: "This app is not allowed to query for scheme cydia"
+
+don’t forget to add `"cydia"` in `LSApplicationQueriesSchemes` key of `info.plist`. Otherwise `canOpenURL` will always return `false`.
+
+```xml
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>cydia</string>
+</array>
+```
+
 ## Usage in Javascript
 
 ```
