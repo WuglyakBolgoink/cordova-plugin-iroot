@@ -13,7 +13,7 @@ public final class Constants {
      * @see <a href="https://owasp.org/www-project-mobile-top-10/2016-risks/m8-code-tampering">(2016) OWASP-mobile-top-10 m8-code-tampering</a>
      * @see <a href="https://owasp.org/www-project-mobile-top-10/2014-risks/m10-lack-of-binary-protections">(2014) OWASP-mobile-top-10 m10-lack-of-binary-protections</a>
      */
-    public static final String OTA_CERTIFICATES_PATH = "/etc/security/  .zip";
+    public static final String OTA_CERTIFICATES_PATH = "/etc/security/otacerts.zip";
     public static final String CYDIA_SUBSTRATE_PACKAGE = "com.saurik.substrate";
 
     public static final List<String> SUPER_USER_APK_FILES = Arrays.asList(
@@ -26,11 +26,11 @@ public final class Constants {
     );
 
     /**
-             * Other packages. The following list of packages are often looked for as well.
-             * The last two facilitate in temporarily hiding the su binary and disabling installed applications.
-             *
-             * Any chainfire package. One MDM looks for any package that is developed by chainfire. The most notable one being SuperSU.
-             */
+     * Other packages. The following list of packages are often looked for as well.
+     * The last two facilitate in temporarily hiding the su binary and disabling installed applications.
+     *
+     * Any chainfire package. One MDM looks for any package that is developed by chainfire. The most notable one being SuperSU.
+     */
     public static final List<String> BLACKLISTED_PACKAGES = Arrays.asList(
             "com.noshufou.android.su",
             "com.thirdparty.superuser",

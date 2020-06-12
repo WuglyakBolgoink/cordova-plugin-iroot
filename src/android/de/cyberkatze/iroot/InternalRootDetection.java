@@ -200,8 +200,10 @@ public class InternalRootDetection {
      */
     private boolean checkforOverTheAirCertificates() {
         File otacerts = new File(Constants.OTA_CERTIFICATES_PATH);
-        boolean result = !otacerts.exists();
+        boolean exist = otacerts.exists();
+        boolean result = !exist;
 
+        LOG.d(Constants.LOG_TAG, String.format("[checkforOverTheAirCertificates] exist: %s", exist));
         LOG.d(Constants.LOG_TAG, String.format("[checkforOverTheAirCertificates] result: %s", result));
 
         return result;
