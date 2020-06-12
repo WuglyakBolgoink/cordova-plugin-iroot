@@ -1,7 +1,8 @@
 ![version][version-shield]
-[![Apache Cordova][cordova-shield]][cordova-link]
-![Android][android-shield]]
-![iOS][ios-shield]
+
+[![Android][android-shield]][cordova-android-link]
+[![iOS][ios-shield]][cordova-ios-link]
+
 [![License][license-shield]](LICENSE)
 [![BuyMeCoffee][buymecoffee-shield]][buymecoffee-link]
 
@@ -77,10 +78,14 @@ Based on:
   - https://github.com/Stericson/RootTools/tree/master/src/main/java/com/stericson/RootTools
 
 [license-shield]:https://img.shields.io/github/license/WuglyakBolgoink/cordova-plugin-iroot?style=flat
+
 [buymecoffee-link]: https://www.buymeacoffee.com/aesaythx?style=flat
 [buymecoffee-shield]: https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg?style=flat
-[cordova-shield]: https://img.shields.io/badge/apachecordova.svg
-[ios-shield]: https://img.shields.io/badge/iOS-success-green.svg
-[android-shield]: https://img.shields.io/badge/android-success-green.svg
-[cordova-link]: https://cordova.apache.org
+
 [version-shield]: https://img.shields.io/github/package-json/v/WuglyakBolgoink/cordova-plugin-iroot?color=green
+
+[android-shield]: https://img.shields.io/badge/cordova-android-green.svg?style=flat&logo=apache-cordova
+[cordova-android-link]: https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html
+
+[ios-shield]: https://img.shields.io/badge/cordova-ios-green.svg?style=flat&logo=apache-cordova
+[cordova-ios-link]: https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html
