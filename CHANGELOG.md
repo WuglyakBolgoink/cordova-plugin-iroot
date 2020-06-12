@@ -2,6 +2,22 @@
 
 ## Version History
 
+### v2.0.0
+
+**BREAKING CHANGES**:
+
+- remove nodeJS stuff
+- remove cordova hooks
+- remove `ENABLE_BUSYBOX_CHECK` plugin preference
+- remove `isRootedRedBeerWithoutBusyBoxCheck` function
+- add new internal checks
+    - add simple emulator check
+    - add simple magisk check (full implementation will be finished soon in `rootbeer` library)
+- update documentation / Typings
+- update gradle configuration
+- bump `rootbeer` from 0.0.7 to 0.0.8
+
+
 ### v0.7.0-0.8.0
 
 + Add new optional install variable `ENABLE_BUSYBOX_CHECK`
