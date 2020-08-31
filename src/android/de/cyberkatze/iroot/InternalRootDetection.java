@@ -9,6 +9,8 @@ import org.apache.cordova.LOG;
 
 import java.io.File;
 import java.util.List;
+import org.json.JSONObject;
+import org.json.JSONException;
 
 public class InternalRootDetection {
 
@@ -38,6 +40,45 @@ public class InternalRootDetection {
         LOG.d(Constants.LOG_TAG, String.format("[checkDirPermissions] result: %s", result));
 
         return result;
+    }
+
+    public boolean WhatisRooted(final String action,final Context context) {
+      boolean restest = false;
+      switch (action) {
+        case "isExistBuildTags": restest = isExistBuildTags();
+        break;
+        case "doesSuperuserApkExist": restest = doesSuperuserApkExist();
+        break;
+        case "isExistSUPath": restest = isExistSUPath();
+        break;
+        case "checkDirPermissions": restest = checkDirPermissions();
+        break;
+        case "checkExecutingCommands": restest = checkExecutingCommands();
+        break;
+        case "checkInstalledPackages": restest = checkInstalledPackages(context);
+        break;
+        case "checkforOverTheAirCertificates": restest = checkforOverTheAirCertificates();
+        break;
+        case "isRunningOnEmulator": restest = isRunningOnEmulator();
+        break;
+        case "simpleCheckEmulator": restest = WhatisRunningOnEmulator(action);
+        break;
+        case "simpleCheckSDKBF86": restest = WhatisRunningOnEmulator(action);
+        break;
+        case "simpleCheckQRREFPH": restest = WhatisRunningOnEmulator(action);
+        break;
+        case "simpleCheckBuild": restest = WhatisRunningOnEmulator(action);
+        break;
+        case "checkGenymotion": restest = WhatisRunningOnEmulator(action);
+        break;
+        case "checkGeneric": restest = WhatisRunningOnEmulator(action);
+        break;
+        case "checkGoogleSDK": restest = WhatisRunningOnEmulator(action);
+        break;
+        default: LOG.e(Constants.LOG_TAG, String.format("[WhatisRooted] action: %s", action));
+      }
+      boolean result = restest;
+      return result;
     }
 
     /**
@@ -239,35 +280,73 @@ public class InternalRootDetection {
      * @see <a href="https://github.com/framgia/android-emulator-detector">android-emulator-detector</a>
      * @see <a href="https://github.com/testmandy/NativeAdLibrary-master/blob/68e1a972fc746a0b51395f813f5bcf32fd619376/library/src/main/java/me/dt/nativeadlibary/util/RootUtil.java#L59">testmandy RootUtil.java</a>
      */
-    public boolean isRunningOnEmulator() {
-        Utils.getDeviceInfo();
+     public boolean isRunningOnEmulator() {
+         Utils.getDeviceInfo();
+         boolean simpleCheck = Build.MODEL.contains("Emulator")
+             // ||Build.FINGERPRINT.startsWith("unknown") // Meizu Mx Pro will return unknown, so comment it!
+             || Build.MODEL.contains("Android SDK built for x86")
+             // || Build.BOARD.equals("QC_Reference_Phone") //bluestacks
+             || Build.HOST.startsWith("Build"); //MSI App Player
 
-        boolean simpleCheck = Build.MODEL.contains("Emulator")
-            // ||Build.FINGERPRINT.startsWith("unknown") // Meizu Mx Pro will return unknown, so comment it!
-            || Build.MODEL.contains("Android SDK built for x86")
-            || Build.BOARD.equals("QC_Reference_Phone") //bluestacks
-            || Build.HOST.startsWith("Build"); //MSI App Player
+         boolean checkGenymotion = Build.MANUFACTURER.contains("Genymotion");
+         boolean checkGeneric = Build.FINGERPRINT.startsWith("generic") || (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"));
+         boolean checkGoogleSDK = Build.MODEL.contains("google_sdk") || "google_sdk".equals(Build.PRODUCT);
 
-        boolean checkGenymotion = Build.MANUFACTURER.contains("Genymotion");
-        boolean checkGeneric = Build.FINGERPRINT.startsWith("generic") || (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"));
-        boolean checkGoogleSDK = Build.MODEL.contains("google_sdk") || "google_sdk".equals(Build.PRODUCT);
+         boolean result = simpleCheck || checkGenymotion || checkGeneric || checkGoogleSDK;
 
-        boolean result = simpleCheck || checkGenymotion || checkGeneric || checkGoogleSDK;
+         LOG.d(
+             Constants.LOG_TAG,
+             String.format(
+                 "[isRunningOnEmulator] result [%s] => [simpleCheck:%s][checkGenymotion:%s][checkGeneric:%s][checkGoogleSDK:%s]",
+                 result,
+                 simpleCheck,
+                 checkGenymotion,
+                 checkGeneric,
+                 checkGoogleSDK
+             )
+         );
 
-        LOG.d(
-            Constants.LOG_TAG,
-            String.format(
-                "[isRunningOnEmulator] result [%s] => [simpleCheck:%s][checkGenymotion:%s][checkGeneric:%s][checkGoogleSDK:%s]",
-                result,
-                simpleCheck,
-                checkGenymotion,
-                checkGeneric,
-                checkGoogleSDK
-            )
-        );
+         return result;
+     }
 
-        return result;
-    }
+     public boolean WhatisRunningOnEmulator(final String action) {
+
+         Utils.getDeviceInfo();
+         boolean result = false;
+
+         switch (action) {
+           case "simpleCheckEmulator": result = Build.MODEL.contains("Emulator");
+           break;
+           case "simpleCheckSDKBF86": result = Build.MODEL.contains("Android SDK built for x86");
+           break;
+           case "simpleCheckQRREFPH": result = Build.BOARD.equals("QC_Reference_Phone");
+           break;
+           case "simpleCheckBuild": result = Build.HOST.startsWith("Build");
+           break;
+           case "checkGenymotion": result = Build.MANUFACTURER.contains("Genymotion");
+           break;
+           case "checkGeneric": result = Build.FINGERPRINT.startsWith("generic") || (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"));
+           break;
+           case "checkGoogleSDK": result = Build.MODEL.contains("google_sdk") || "google_sdk".equals(Build.PRODUCT);
+           break;
+         }
+         return result;
+     }
+
+     public JSONObject togetDeviceInfo() throws JSONException {
+         Utils.getDeviceInfo();
+         JSONObject objBuild = new JSONObject();
+         objBuild.put("DEVICE",Build.DEVICE);
+         objBuild.put("MODEL",Build.MODEL);
+         objBuild.put("MANUFACTURER",Build.MANUFACTURER);
+         objBuild.put("BRAND",Build.BRAND);
+         objBuild.put("BOARD",Build.BOARD);
+         objBuild.put("HARDWARE",Build.HARDWARE);
+         objBuild.put("PRODUCT",Build.PRODUCT);
+         objBuild.put("FINGERPRINT",Build.FINGERPRINT);
+         objBuild.put("HOST",Build.HOST);
+         return objBuild;
+     }
 
     // TODO: https://github.com/tansiufang54/fncgss/blob/master/app/src/main/java/co/id/franknco/controller/RootUtil.java#L126
     //    private boolean checkServerSocket() {

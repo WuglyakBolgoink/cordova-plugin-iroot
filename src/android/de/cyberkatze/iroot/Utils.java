@@ -8,8 +8,30 @@ import org.apache.cordova.PluginResult.Status;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.reflect.Method;
 
 public class Utils {
+
+    private Utils() throws InstantiationException {
+          throw new InstantiationException("This class is not for instantiation");
+      }
+      /**
+       * In Development - an idea of ours was to check the if selinux is enforcing - this could be disabled for some rooting apps
+       * Checking for selinux mode
+       *
+       * @return true if selinux enabled
+       */
+      public static boolean isSelinuxFlagInEnabled() {
+          try {
+              Class<?> c = Class.forName("android.os.SystemProperties");
+              Method get = c.getMethod("get", String.class);
+              String selinux = (String) get.invoke(c, "ro.build.selinux");
+              return "1".equals(selinux);
+          } catch (Exception ignored) {
+
+          }
+          return false;
+      }
 
     /**
      * Helper function that logs the error and then calls the error callback.
