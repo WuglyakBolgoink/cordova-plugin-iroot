@@ -24,6 +24,32 @@ public class InternalRootDetection {
         boolean c5 = checkExecutingCommands();
         boolean c6 = checkInstalledPackages(context);
         boolean c7 = checkforOverTheAirCertificates();
+        // boolean c8 = isRunningOnEmulator();
+
+        LOG.d(Constants.LOG_TAG, "check c1 = isExistBuildTags: " + c1);
+        LOG.d(Constants.LOG_TAG, "check c2 = doesSuperuserApkExist: " + c2);
+        LOG.d(Constants.LOG_TAG, "check c3 = isExistSUPath: " + c3);
+        LOG.d(Constants.LOG_TAG, "check c4 = checkDirPermissions: " + c4);
+        LOG.d(Constants.LOG_TAG, "check c5 = checkExecutingCommands: " + c5);
+        LOG.d(Constants.LOG_TAG, "check c6 = checkInstalledPackages: " + c6);
+        LOG.d(Constants.LOG_TAG, "check c7 = checkforOverTheAirCertificates: " + c7);
+        // LOG.d(Constants.LOG_TAG, "check c8 = isRunningOnEmulator: " + c8);
+
+        boolean result = c1 || c2 || c3 || c4 || c5 || c6 || c7;
+
+        LOG.d(Constants.LOG_TAG, String.format("[checkDirPermissions] result: %s", result));
+
+        return result;
+    }
+
+    public boolean isRootedWithEmulator(final Context context) {
+        boolean c1 = isExistBuildTags();
+        boolean c2 = doesSuperuserApkExist();
+        boolean c3 = isExistSUPath();
+        boolean c4 = checkDirPermissions();
+        boolean c5 = checkExecutingCommands();
+        boolean c6 = checkInstalledPackages(context);
+        boolean c7 = checkforOverTheAirCertificates();
         boolean c8 = isRunningOnEmulator();
 
         LOG.d(Constants.LOG_TAG, "check c1 = isExistBuildTags: " + c1);
@@ -285,7 +311,7 @@ public class InternalRootDetection {
          boolean simpleCheck = Build.MODEL.contains("Emulator")
              // ||Build.FINGERPRINT.startsWith("unknown") // Meizu Mx Pro will return unknown, so comment it!
              || Build.MODEL.contains("Android SDK built for x86")
-             // || Build.BOARD.equals("QC_Reference_Phone") //bluestacks
+             || Build.BOARD.equals("QC_Reference_Phone") //bluestacks
              || Build.HOST.startsWith("Build"); //MSI App Player
 
          boolean checkGenymotion = Build.MANUFACTURER.contains("Genymotion");
@@ -345,6 +371,13 @@ public class InternalRootDetection {
          objBuild.put("PRODUCT",Build.PRODUCT);
          objBuild.put("FINGERPRINT",Build.FINGERPRINT);
          objBuild.put("HOST",Build.HOST);
+         // Add More info
+         objBuild.put("USER",Build.USER);
+         objBuild.put("OSNAME",System.getProperty("os.name"));
+         objBuild.put("OSVERSION",System.getProperty("os.version"));
+         objBuild.put("V.INCREMENTAL",Build.VERSION.INCREMENTAL);
+         objBuild.put("V.RELEASE",Build.VERSION.RELEASE);
+         objBuild.put("V.SDK_INT",Build.VERSION.SDK_INT);
          return objBuild;
      }
 

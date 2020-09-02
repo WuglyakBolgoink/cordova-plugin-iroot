@@ -77,6 +77,42 @@ public class IRoot extends CordovaPlugin {
                 });
 
                 return true;
+            case ACTION_IS_ROOTED_WITH_EMULATOR:
+                cordova.getThreadPool().execute(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        PluginResult result;
+
+                        try {
+                            result = checkIsRootedWithEmulator(args, callbackContext);
+                        } catch (Exception error) {
+                            result = new PluginResult(PluginResult.Status.ERROR, error.toString());
+                        }
+
+                        callbackContext.sendPluginResult(result);
+                    }
+                });
+
+                return true;
+            case ACTION_IS_ROOTED_WITH_BUSY_BOX_WITH_EMULATOR:
+                cordova.getThreadPool().execute(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        PluginResult result;
+
+                        try {
+                            result = checkIsRootedWithBusyBoxWithEmulator(args, callbackContext);
+                        } catch (Exception error) {
+                            result = new PluginResult(PluginResult.Status.ERROR, error.toString());
+                        }
+
+                        callbackContext.sendPluginResult(result);
+                    }
+                });
+
+                return true;
             case ACTION_DETECTROOTMANAGEMENTAPPS:
             case ACTION_DETECTPOTENTIALLYDANGEROUSAPPS:
             case ACTION_DETECTTESTKEYS:
@@ -242,7 +278,7 @@ public class IRoot extends CordovaPlugin {
 
 
     /**
-     * Check with rootBeer without BusyBox.
+     * Check with rootBeer with BusyBox and with internal checks.
      */
     private PluginResult checkIsRootedWithBusyBox(final JSONArray args, final CallbackContext callbackContext) {
         try {
@@ -260,6 +296,52 @@ public class IRoot extends CordovaPlugin {
             return new PluginResult(Status.OK, isRooted);
         } catch (Exception error) {
             return Utils.getPluginResultError("checkIsRootedWithBusyBox", error);
+        }
+    }
+
+    /**
+     * Check with rootBeer and with internal checks and with isRunningOnEmulator
+     */
+     private PluginResult checkIsRootedWithEmulator(final JSONArray args, final CallbackContext callbackContext) {
+         try {
+             Context context = this.cordova.getActivity().getApplicationContext();
+             RootBeer rootBeer = new RootBeer(context);
+
+             boolean checkRootBeer = rootBeer.isRooted();
+             boolean checkInternal = this.internalRootDetection.isRootedWithEmulator(context);
+
+             LOG.d(Constants.LOG_TAG, "[checkIsRootedWithEmulator] checkRootBeer: " + checkRootBeer);
+             LOG.d(Constants.LOG_TAG, "[checkIsRootedWithEmulator] checkInternal: " + checkInternal);
+
+             boolean isRooted = checkRootBeer || checkInternal;
+             // boolean isRooted = checkRootBeer;
+
+             return new PluginResult(Status.OK, isRooted);
+         } catch (Exception error) {
+             return Utils.getPluginResultError("checkIsRootedWithEmulator", error);
+         }
+     }
+
+
+    /**
+     * Check with rootBeer with BusyBox and with internal checks and with isRunningOnEmulator
+     */
+    private PluginResult checkIsRootedWithBusyBoxWithEmulator(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            Context context = this.cordova.getActivity().getApplicationContext();
+            RootBeer rootBeer = new RootBeer(context);
+
+            boolean checkRootBeer = rootBeer.isRootedWithBusyBoxCheck();
+            boolean checkInternal = this.internalRootDetection.isRootedWithEmulator(context);
+
+            LOG.d(Constants.LOG_TAG, "[checkIsRootedWithBusyBoxWithEmulator] checkRootBeer: " + checkRootBeer);
+            LOG.d(Constants.LOG_TAG, "[checkIsRootedWithBusyBoxWithEmulator] checkInternal: " + checkInternal);
+
+            boolean isRooted = checkRootBeer || checkInternal;
+
+            return new PluginResult(Status.OK, isRooted);
+        } catch (Exception error) {
+            return Utils.getPluginResultError("checkIsRootedWithBusyBoxWithEmulator", error);
         }
     }
 

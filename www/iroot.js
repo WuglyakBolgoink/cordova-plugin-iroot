@@ -87,6 +87,12 @@ module.exports = {
     },
     togetDeviceInfo: function(onSuccess, onError) {
         exec(onSuccess, onError, 'IRoot', 'togetDeviceInfo', []);
+    },
+    isRootedWithEmulator: function(onSuccess, onError) {
+        exec(onSuccess, onError, 'IRoot', 'isRootedWithEmulator', []);
+    },
+    isRootedWithBusyBoxWithEmulator: function(onSuccess, onError) {
+        exec(onSuccess, onError, 'IRoot', 'isRootedWithBusyBoxWithEmulator', []);
     }
 
 };
