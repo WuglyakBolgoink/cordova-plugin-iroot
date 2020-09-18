@@ -91,6 +91,8 @@ Based on:
   > tmpfs                   958500         0    958500   0% /mnt/obb
 4. Check library
   - https://github.com/Stericson/RootTools/tree/master/src/main/java/com/stericson/RootTools
+5. Frida detect
+5. Magestic detect
 
 [license-shield]:https://img.shields.io/github/license/WuglyakBolgoink/cordova-plugin-iroot?style=flat
 
