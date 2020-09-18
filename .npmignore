@@ -5,3 +5,7 @@ Desktop.ini
 .DS_Store
 node_modules
 .vscode
+src/android/.gradle
+src/android/gradlew
+src/android/gradlew.bat
+src/android/gradle*
