@@ -15,6 +15,8 @@
         <engine name="cordova" version=">=6.0.0"/>
     </engines>
 
+    <preference name="IS_ROOT_DEBUGGABLE" />
+
     <js-module name="IRoot" src="www/iroot.js">
         <clobbers target="IRoot"/>
     </js-module>
@@ -42,11 +44,13 @@
 
         <config-file parent="/*" target="AndroidManifest.xml"/>
 
-        <source-file src="src/android/de/cyberkatze/iroot/Constants.java" target-dir="src/de/cyberkatze/iroot"/>
-        <source-file src="src/android/de/cyberkatze/iroot/CordovaActions.java" target-dir="src/de/cyberkatze/iroot"/>
-        <source-file src="src/android/de/cyberkatze/iroot/InternalRootDetection.java" target-dir="src/de/cyberkatze/iroot"/>
-        <source-file src="src/android/de/cyberkatze/iroot/IRoot.java" target-dir="src/de/cyberkatze/iroot"/>
-        <source-file src="src/android/de/cyberkatze/iroot/Utils.java" target-dir="src/de/cyberkatze/iroot"/>
+        <source-file src="src/android/de/cyberkatze/iroot/checks/InternalRootChecks.java" target-dir="de/cyberkatze/iroot/checks"/>
+        <source-file src="src/android/de/cyberkatze/iroot/constants/ActionChecks.java" target-dir="de/cyberkatze/iroot/constants"/>
+        <source-file src="src/android/de/cyberkatze/iroot/constants/Constants.java" target-dir="de/cyberkatze/iroot/constants"/>
+        <source-file src="src/android/de/cyberkatze/iroot/utils/CordovaActions.java" target-dir="de/cyberkatze/iroot/utils"/>
+        <source-file src="src/android/de/cyberkatze/iroot/utils/Utils.java" target-dir="de/cyberkatze/iroot/utils"/>
+        <source-file src="src/android/de/cyberkatze/iroot/InternalRootDetection.java" target-dir="de/cyberkatze/iroot"/>
+        <source-file src="src/android/de/cyberkatze/iroot/IRoot.java" target-dir="de/cyberkatze/iroot"/>
 
         <framework custom="true" src="src/android/build-extras.gradle" type="gradleReference"/>
     </platform>
