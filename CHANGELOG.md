@@ -2,6 +2,10 @@
 
 ## Version History
 
+### v2.1.0
+
+- Add Check by Methods and Remove Check isRunningOnEmulator by default (https://github.com/WuglyakBolgoink/cordova-plugin-iroot/pull/43)
+
 ### v2.0.0
 
 **BREAKING CHANGES**:
