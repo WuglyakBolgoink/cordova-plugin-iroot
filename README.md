@@ -8,15 +8,23 @@
   <img src="/assets/logo.png">
 </p>
 
-Cordova Jailbreak/Root Detection Plugin
-=======================================
+Jailbreak/Root Detection Plugin for Apache Cordova
+==================================================
 
 Use this plugin to add an extra layer of security for your app by detecting if the device was `root`ed (on android) or `jailbreak`ed (on iOS).
 
 ## Install
 
-```
+```bash
 cordova plugin add cordova-plugin-iroot
+```
+
+## Upgrade
+
+```bash
+cordova plugin rm cordova-plugin-iroot
+cordova plugin add cordova-plugin-iroot
+cordova prepare
 ```
 
 ## postInstall
@@ -30,15 +38,17 @@ To avoid errors like
 don’t forget to add `"cydia"` in `LSApplicationQueriesSchemes` key of `info.plist`. Otherwise `canOpenURL` will always return `false`.
 
 ```xml
-<key>LSApplicationQueriesSchemes</key>
-<array>
-    <string>cydia</string>
-</array>
+<xxx>
+  <key>LSApplicationQueriesSchemes</key>
+  <array>
+      <string>cydia</string>
+  </array>
+</xxx>
 ```
 
 ## Usage in Javascript
 
-```
+```js
 // available => iOS + Android
 IRoot.isRooted(successCallback, failureCallback);
 
