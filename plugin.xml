@@ -3,7 +3,7 @@
     <name>iRoot</name>
     <author>Elderov Ali (info@cyberkatze.de)</author>
 
-    <description>Cordova Jailbreak/Root Detection Plugin</description>
+    <description>Jailbreak/Root Detection Plugin for Apache Cordova</description>
     <keywords>cordova,jailbreak,jailbroken,cydia,detection,detector,root,rooted,rootBeer,android,ios,iroot,plugin</keywords>
 
     <license>MIT</license>
