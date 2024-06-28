@@ -317,18 +317,20 @@ public class InternalRootDetection {
          boolean checkGenymotion = Build.MANUFACTURER.contains("Genymotion");
          boolean checkGeneric = Build.FINGERPRINT.startsWith("generic") || (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"));
          boolean checkGoogleSDK = Build.MODEL.contains("google_sdk") || "google_sdk".equals(Build.PRODUCT);
+         boolean checkMEmu = (Build.FINGERPRINT.split("/").length == 5 && Build.FINGERPRINT.contains("mv-dev")) || (Build.DEVICE == Build.MODEL && Build.MANUFACTURER == Build.BRAND); // MEmu Play Emulator
 
-         boolean result = simpleCheck || checkGenymotion || checkGeneric || checkGoogleSDK;
+         boolean result = simpleCheck || checkGenymotion || checkGeneric || checkGoogleSDK || checkMEmu;
 
          LOG.d(
              Constants.LOG_TAG,
              String.format(
-                 "[isRunningOnEmulator] result [%s] => [simpleCheck:%s][checkGenymotion:%s][checkGeneric:%s][checkGoogleSDK:%s]",
+                 "[isRunningOnEmulator] result [%s] => [simpleCheck:%s][checkGenymotion:%s][checkGeneric:%s][checkGoogleSDK:%s][checkMEmu:%s]",
                  result,
                  simpleCheck,
                  checkGenymotion,
                  checkGeneric,
-                 checkGoogleSDK
+                 checkGoogleSDK,
+                 checkMEmu
              )
          );
 
