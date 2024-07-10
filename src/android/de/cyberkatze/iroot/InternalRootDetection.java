@@ -309,7 +309,7 @@ public class InternalRootDetection {
      public boolean isRunningOnEmulator() {
          Utils.getDeviceInfo();
          boolean simpleCheck = Build.MODEL.contains("Emulator")
-             // ||Build.FINGERPRINT.startsWith("unknown") // Meizu Mx Pro will return unknown, so comment it!
+             || Build.FINGERPRINT.startsWith("unknown")
              || Build.MODEL.contains("Android SDK built for x86")
              || Build.BOARD.equals("QC_Reference_Phone") //bluestacks
              || Build.HOST.startsWith("Build"); //MSI App Player
@@ -318,19 +318,33 @@ public class InternalRootDetection {
          boolean checkGeneric = Build.FINGERPRINT.startsWith("generic") || (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"));
          boolean checkGoogleSDK = Build.MODEL.contains("google_sdk") || "google_sdk".equals(Build.PRODUCT);
          boolean checkMEmu = (Build.FINGERPRINT.split("/").length == 5 && Build.FINGERPRINT.contains("mv-dev")) || (Build.DEVICE == Build.MODEL && Build.MANUFACTURER == Build.BRAND); // MEmu Play Emulator
+         boolean additionalCheck = Build.MODEL.toLowerCase().contains("droid4x")
+            || Build.FINGERPRINT.contains("vbox")
+            || Build.FINGERPRINT.contains("sdk")
+            || Build.HARDWARE.contains("goldfish")
+            || Build.HARDWARE.contains("vbox86")
+            || Build.HARDWARE.contains("ranchu")
+            || Build.HARDWARE.toLowerCase().contains("nox")
+            || Build.PRODUCT == "sdk"
+            || Build.PRODUCT == "sdk_x86"
+            || Build.PRODUCT == "vbox86p"
+            || Build.PRODUCT == "sdk_google_phone_x86"
+            || Build.PRODUCT.toLowerCase().contains("nox")
+            || Build.BOARD.toLowerCase().contains("nox");
 
-         boolean result = simpleCheck || checkGenymotion || checkGeneric || checkGoogleSDK || checkMEmu;
+         boolean result = simpleCheck || checkGenymotion || checkGeneric || checkGoogleSDK || checkMEmu || additionalCheck;
 
          LOG.d(
              Constants.LOG_TAG,
              String.format(
-                 "[isRunningOnEmulator] result [%s] => [simpleCheck:%s][checkGenymotion:%s][checkGeneric:%s][checkGoogleSDK:%s][checkMEmu:%s]",
+                 "[isRunningOnEmulator] result [%s] => [simpleCheck:%s][checkGenymotion:%s][checkGeneric:%s][checkGoogleSDK:%s][checkMEmu:%s][additionalCheck:%s]",
                  result,
                  simpleCheck,
                  checkGenymotion,
                  checkGeneric,
                  checkGoogleSDK,
-                 checkMEmu
+                 checkMEmu,
+                 additionalCheck
              )
          );
 
