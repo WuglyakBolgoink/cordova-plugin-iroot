@@ -32,6 +32,7 @@
         <header-file src="src/ios/IRoot.h"/>
 
         <source-file src="src/ios/IRoot.m"/>
+        <resource-file src="src/ios/IRoot.bundle" target="IRoot.bundle" />
     </platform>
 
     <platform name="android">
