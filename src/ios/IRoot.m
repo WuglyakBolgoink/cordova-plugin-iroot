@@ -174,7 +174,10 @@ enum {
         (f = fopen("/usr/bin/frida-server", "r")) ||
         (f = fopen("/usr/local/bin/cycript", "r")) ||
 
-        (f = fopen("/usr/lib/libcycript.dylib", "r"))
+        (f = fopen("/usr/lib/libcycript.dylib", "r")) ||
+
+        (f = fopen("/private/var/tmp/palera1n", "r")) ||
+        (f = fopen("/cores/binpack/Applications/palera1nLoader.app", "r"))
         )  {
         fclose(f);
         return YES;
