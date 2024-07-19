@@ -9,5 +9,6 @@
 @interface IRoot : CDVPlugin
 
 - (void) isRooted:(CDVInvokedUrlCommand*)command;
+- (void) isMiddleManProxyEnabled:(CDVInvokedUrlCommand*)command;
 
 @end

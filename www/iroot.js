@@ -7,6 +7,9 @@ module.exports = {
     isRootedWithBusyBox: function(onSuccess, onError) {
         exec(onSuccess, onError, 'IRoot', 'isRootedWithBusyBox', []);
     },
+    isMiddleManProxyEnabled: function(onSuccess, onError) {
+        exec(onSuccess, onError, 'IRoot', 'isMiddleManProxyEnabled', []);
+    },
     detectRootManagementApps: function(onSuccess, onError) {
         exec(onSuccess, onError, 'IRoot', 'detectRootManagementApps', []);
     },
