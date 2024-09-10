@@ -3,5 +3,5 @@ repositories{
 }
 
 dependencies {
-    implementation 'com.github.scottyab:rootbeer:0.1.0'
+    implementation 'com.github.scottyab:rootbeer:e14e07404b8179f3b21622487665daa8bf4d5c64'
 }
