@@ -9,6 +9,12 @@
 #import "IRoot.h"
 #import <sys/stat.h>
 #import <sys/sysctl.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
+#include <mach-o/dyld.h>
+#include <sys/types.h>
+#include <sys/ptrace.h>
 
 
 
@@ -269,6 +275,26 @@ enum {
         motzart += 2;
     }
 
+    if ([self checkFork] != NOTJAIL) {
+        // Frida
+        motzart += 2;
+    }
+
+    if ([self isFridaRunning] != NOTJAIL) {
+        // Frida
+        motzart += 2;
+    }
+
+    if ([self isFridaInjected] != NOTJAIL) {
+        // Frida
+        motzart += 2;
+    }
+
+    if ([self isDebugged] != NOTJAIL) {
+        // Jailbroken
+        motzart += 2;
+    }
+
     // Check if the Jailbreak Integer is 3 or more
     if (motzart >= 3) {
         // Jailbroken
@@ -282,6 +308,72 @@ enum {
 
 
 #pragma mark - Static Jailbreak Checks
+
+// Detect if the process is being debugged
+- (int)isDebugged {
+    @try {
+        struct kinfo_proc info;
+        int mib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid()};
+        size_t size = sizeof(info);
+        sysctl(mib, 4, &info, &size, NULL, 0);
+        return (info.kp_proc.p_flag & P_TRACED) != 0 ? KFSystem : NOTJAIL;
+    }
+    @catch (NSException *exception) {
+        // Error, return false
+        return NOTJAIL;
+    }
+}
+
+// Detect FridaGadget
+- (int)isFridaInjected {
+    @try {
+        for (uint32_t i = 0; i < _dyld_image_count(); i++) {
+            const char *dyld = _dyld_get_image_name(i);
+            if (strstr(dyld, "FridaGadget")) {
+                return KFSystem;
+            }
+        }
+        return NOTJAIL;
+    }
+    @catch (NSException *exception) {
+        // Error, return false
+        return NOTJAIL;
+    }
+}
+
+// Check Frida port
+- (int)isFridaRunning {
+    @try {
+        struct sockaddr_in addr;
+        addr.sin_family = AF_INET;
+        addr.sin_port = htons(27042); // Frida default port
+        addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+
+        int sock = socket(AF_INET, SOCK_STREAM, 0);
+        BOOL isOpen = connect(sock, (struct sockaddr *)&addr, sizeof(addr)) == 0;
+        close(sock);
+        return isOpen ? KFSystem : NOTJAIL;
+    }
+    @catch (NSException *exception) {
+        // Error, return false
+        return NOTJAIL;
+    }
+}
+
+// Fork function is desabled in normal system
+- (int)checkFork {
+    @try {
+        int pid = fork();
+        if (pid >= 0) {
+            return KFSystem;
+        }
+        return NOTJAIL;
+    }
+    @catch (NSException *exception) {
+        // Error, return false
+        return NOTJAIL;
+    }
+}
 
 // UIApplication CanOpenURL Check
 - (int)urlCheck {
