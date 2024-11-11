@@ -2,6 +2,11 @@
 
 ## Version History
 
+### 3.1.0
+
+- bump `rootbeer` from `0.0.9` to `0.1.0` (see [rootbeer#170](scottyab/rootbeer#170) [rootbeer#171](scottyab/rootbeer#171))
+
+
 ### 3.0.0
 
 - bump `rootbeer` from `0.0.8` to `0.0.9`
