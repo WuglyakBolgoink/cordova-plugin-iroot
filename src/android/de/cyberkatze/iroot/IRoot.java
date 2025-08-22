@@ -6,6 +6,8 @@ import com.scottyab.rootbeer.RootBeer;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaInterface;
+import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.LOG;
 import org.apache.cordova.PluginResult;
 import org.apache.cordova.PluginResult.Status;
@@ -21,6 +23,42 @@ public class IRoot extends CordovaPlugin {
     private final String ERROR_UNKNOWN_ACTION = "Unknown action";
 
     private InternalRootDetection internalRootDetection = new InternalRootDetection();
+
+    @Override
+    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+        super.initialize(cordova, webView);
+        
+        // Executa verificação de root na inicialização
+        cordova.getThreadPool().execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Context context = cordova.getActivity().getApplicationContext();
+                    RootBeer rootBeer = new RootBeer(context);
+                    boolean checkRootBeer = rootBeer.isRooted();
+                    boolean checkInternal = internalRootDetection.isRooted(context);
+                    
+                    final boolean isRooted = checkRootBeer || checkInternal;
+                    
+                    LOG.d(Constants.LOG_TAG, "[AutoCheck] checkRootBeer: " + checkRootBeer);
+                    LOG.d(Constants.LOG_TAG, "[AutoCheck] checkInternal: " + checkInternal);
+                    
+                    if (isRooted) {
+                        LOG.e(Constants.LOG_TAG, "[AutoCheck] Dispositivo com root detectado. Encerrando aplicativo.");
+                        cordova.getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                cordova.getActivity().finish();
+                                android.os.Process.killProcess(android.os.Process.myPid());
+                            }
+                        });
+                    }
+                } catch (Exception e) {
+                    LOG.e(Constants.LOG_TAG, "[AutoCheck] Erro ao verificar root: " + e.getMessage());
+                }
+            }
+        });
+    }
 
     @Override
     public boolean execute(final String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {

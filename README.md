@@ -48,6 +48,12 @@ don’t forget to add `"cydia"` in `LSApplicationQueriesSchemes` key of `info.pl
 
 ## Usage in Javascript
 
+### Verificação Automática
+O plugin agora realiza uma verificação automática de root/jailbreak na inicialização do aplicativo. Se for detectado root/jailbreak, o aplicativo tentará se fechar automaticamente.
+
+### Verificação Manual
+Você também pode realizar verificações manuais quando desejar:
+
 ```js
 // available => iOS + Android
 IRoot.isRooted(successCallback, failureCallback);

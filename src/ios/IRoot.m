@@ -62,6 +62,17 @@ enum {
 
 @implementation IRoot
 
+- (void)pluginInitialize {
+    // Executa verificação de jailbreak na inicialização
+    if ([self jailbroken]) {
+        NSLog(@"[IRoot] Dispositivo com jailbreak detectado na inicialização. Encerrando aplicativo.");
+        // Encerra o app
+        exit(0);
+    } else {
+        NSLog(@"[IRoot] Verificação de jailbreak na inicialização: dispositivo seguro");
+    }
+}
+
 - (void) isRooted:(CDVInvokedUrlCommand*)command;
 {
     CDVPluginResult *pluginResult;
