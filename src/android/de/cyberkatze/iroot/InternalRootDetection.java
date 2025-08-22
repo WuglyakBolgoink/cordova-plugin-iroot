@@ -317,7 +317,7 @@ public class InternalRootDetection {
          boolean checkGenymotion = Build.MANUFACTURER.contains("Genymotion");
          boolean checkGeneric = Build.FINGERPRINT.startsWith("generic") || (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"));
          boolean checkGoogleSDK = Build.MODEL.contains("google_sdk") || "google_sdk".equals(Build.PRODUCT);
-         boolean checkMEmu = (Build.FINGERPRINT.split("/").length == 5 && Build.FINGERPRINT.contains("mv-dev")) || (Build.DEVICE == Build.MODEL && Build.MANUFACTURER == Build.BRAND); // MEmu Play Emulator
+         boolean checkMEmu = (Build.FINGERPRINT.split("/").length == 5 && Build.FINGERPRINT.contains("mv-dev")) || (Build.DEVICE.equals(Build.MODEL) && Build.MANUFACTURER.equals(Build.BRAND)); // MEmu Play Emulator
          boolean additionalCheck = Build.MODEL.toLowerCase().contains("droid4x")
             || Build.FINGERPRINT.contains("vbox")
             || Build.FINGERPRINT.contains("sdk")
