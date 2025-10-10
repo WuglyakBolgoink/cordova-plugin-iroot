@@ -1,4 +1,5 @@
 ![version][version-shield]
+![NPM Downloads](https://img.shields.io/npm/dw/cordova-plugin-iroot)
 [![Android][android-shield]][cordova-android-link]
 [![iOS][ios-shield]][cordova-ios-link]
 [![License][license-shield]](LICENSE)
@@ -24,10 +25,12 @@ cordova plugin add cordova-plugin-iroot
 ```bash
 cordova plugin rm cordova-plugin-iroot
 cordova plugin add cordova-plugin-iroot
+# or
+# cordova plugin add cordova-plugin-iroot@x.y.z
 cordova prepare
 ```
 
-## postInstall
+## post-install
 
 ### iOS
 
@@ -101,7 +104,6 @@ Based on:
   > tmpfs                   958500         0    958500   0% /mnt/obb
 4. Check library
   - https://github.com/Stericson/RootTools/tree/master/src/main/java/com/stericson/RootTools
-5. Frida detect
 5. Magestic detect
 
 [license-shield]:https://img.shields.io/github/license/WuglyakBolgoink/cordova-plugin-iroot?style=flat
@@ -109,7 +111,7 @@ Based on:
 [buymecoffee-link]: https://www.buymeacoffee.com/aesaythx?style=flat
 [buymecoffee-shield]: https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg?style=flat
 
-[version-shield]: https://img.shields.io/github/package-json/v/WuglyakBolgoink/cordova-plugin-iroot?color=green
+[version-shield]: https://img.shields.io/npm/v/cordova-plugin-iroot?color=green
 
 [android-shield]: https://img.shields.io/badge/cordova-android-green.svg?style=flat&logo=apache-cordova
 [cordova-android-link]: https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html
