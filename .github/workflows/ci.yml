@@ -1,0 +1,33 @@
+name: Cordova cordova-plugin-iroot Plugin CI
+
+on: [push]
+
+env:
+  nodejs: "22.x"
+
+jobs:
+  build-ios:
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install Node.js ${{ env.nodejs }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.nodejs }}
+      - name: Install node modules
+        run: npm ci
+
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install Node.js ${{ env.nodejs }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.nodejs }}
+      - name: Install node modules
+        run: npm ci
+      - name: Install JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8

@@ -1,0 +1,18 @@
+name: Cordova cordova-plugin-iroot Plugin Publish
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  nodejs: "22.x"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: |
+          echo "Version changed: todo..."
+       
