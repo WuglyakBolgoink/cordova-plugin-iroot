@@ -5,6 +5,13 @@
 ### 3.2.0
 
 - bump `rootbeer` from `0.1.0` to `0.1.1`
+- feat(ios): add frida and jailbreak extra validations by @bonus3 in [#59](https://github.com/WuglyakBolgoink/cordova-plugin-iroot/pull/59)
+- feat(android): support for 16KB page Size Android 15 by @NityaSantosh26 in [#65](https://github.com/WuglyakBolgoink/cordova-plugin-iroot/pull/65)
+
+#### New Contributors
+
+* @bonus3 made their first contribution in https://github.com/WuglyakBolgoink/cordova-plugin-iroot/pull/59
+* @NityaSantosh26 made their first contribution in https://github.com/WuglyakBolgoink/cordova-plugin-iroot/pull/65
 
 
 ### 3.1.0
