@@ -2,6 +2,11 @@
 
 ## Version History
 
+### 3.2.1
+
+- fix(ios): remove include to sys/ptrace for iOS build [#71](https://github.com/WuglyakBolgoink/cordova-plugin-iroot/pull/71)
+
+
 ### 3.2.0
 
 - bump `rootbeer` from `0.1.0` to `0.1.1`
